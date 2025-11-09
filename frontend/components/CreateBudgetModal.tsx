@@ -12,7 +12,7 @@ interface CreateBudgetModalProps {
 }
 
 const CATEGORY_OPTIONS = [
-  { value: '', label: 'Overall' },
+  { value: 'Overall', label: 'Overall' },
   { value: 'grocery', label: 'Grocery' },
   { value: 'restaurant', label: 'Restaurant' },
   { value: 'utilities', label: 'Utilities' },
@@ -76,7 +76,7 @@ export default function CreateBudgetModal({
         });
       } else {
         await budgetService.create({
-          category: formData.category === '' || formData.category === 'Overall' ? undefined : formData.category,
+          category: formData.category === 'Overall' ? undefined : formData.category,
           amount_monthly: amount,
           currency: formData.currency
         });
@@ -158,7 +158,7 @@ export default function CreateBudgetModal({
               className="rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:border-[#E97451] focus:ring-[#E97451] focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
               required
             >
-              <option value="">Select a category</option>
+              <option value="" disabled>Select a category</option>
               {CATEGORY_OPTIONS.map((category) => (
                 <option key={category.value} value={category.value}>
                   {category.label}

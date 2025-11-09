@@ -74,10 +74,10 @@ class AlertGenerationService:
                 continue
 
             progress = goal.current_amount / goal.target_amount
+            progress_percent = int(progress * 100)
 
             # Generate alert if progress is between 70% and 100%
             if 0.7 <= progress < 1.0:
-                progress_percent = int(progress * 100)
                 remaining = goal.target_amount - goal.current_amount
 
                 # Calculate projected completion date
@@ -146,6 +146,97 @@ class AlertGenerationService:
 
                 if alert:
                     created_alerts.append(alert)
+
+            # Check for deadline alerts
+            if goal.deadline:
+                time_until_deadline = goal.deadline - datetime.utcnow()
+                days_until_deadline = time_until_deadline.days
+                hours_until_deadline = time_until_deadline.total_seconds() / 3600
+
+                # Alert for expired goals
+                if time_until_deadline.total_seconds() < 0:
+                    alert = await AlertGenerationService.create_alert_if_not_exists(
+                        db,
+                        user_id=user_id,
+                        alert_type="GOAL_PROGRESS",
+                        title=f"Goal Deadline Passed: {goal.name}",
+                        description=(
+                            f"Your deadline for {goal.name} has passed. You had saved "
+                            f"${goal.current_amount:.2f} out of ${goal.target_amount:.2f} "
+                            f"({progress_percent}%). Consider setting a new deadline or adjusting your goal."
+                        ),
+                        metadata={
+                            "goal_id": goal.id,
+                            "goal_name": goal.name,
+                            "current_amount": goal.current_amount,
+                            "target_amount": goal.target_amount,
+                            "progress_percentage": progress_percent,
+                            "days_overdue": abs(days_until_deadline),
+                            "deadline_status": "expired"
+                        }
+                    )
+                    if alert:
+                        created_alerts.append(alert)
+
+                # Alert for goals with deadline in less than 24 hours
+                elif 0 < hours_until_deadline <= 24:
+                    remaining = goal.target_amount - goal.current_amount
+                    hours_left = int(hours_until_deadline)
+
+                    alert = await AlertGenerationService.create_alert_if_not_exists(
+                        db,
+                        user_id=user_id,
+                        alert_type="GOAL_PROGRESS",
+                        title=f"⚠️ URGENT: {goal.name} Deadline in {hours_left} hours!",
+                        description=(
+                            f"Only {hours_left} hour{'s' if hours_left != 1 else ''} left "
+                            f"to reach your {goal.name} goal! You still need ${remaining:.2f} "
+                            f"to meet your target of ${goal.target_amount:.2f}. "
+                            f"This is your final warning!"
+                        ),
+                        metadata={
+                            "goal_id": goal.id,
+                            "goal_name": goal.name,
+                            "current_amount": goal.current_amount,
+                            "target_amount": goal.target_amount,
+                            "progress_percentage": progress_percent,
+                            "hours_until_deadline": hours_left,
+                            "amount_needed": remaining,
+                            "deadline_status": "critical"
+                        }
+                    )
+                    if alert:
+                        created_alerts.append(alert)
+
+                # Alert for goals with deadline in 7 days or less (but more than 24 hours)
+                elif days_until_deadline <= 7:
+                    remaining = goal.target_amount - goal.current_amount
+                    daily_needed = remaining / max(days_until_deadline, 1)
+
+                    alert = await AlertGenerationService.create_alert_if_not_exists(
+                        db,
+                        user_id=user_id,
+                        alert_type="GOAL_PROGRESS",
+                        title=f"Goal Deadline Approaching: {goal.name}",
+                        description=(
+                            f"Only {days_until_deadline} day{'s' if days_until_deadline != 1 else ''} left "
+                            f"to reach your {goal.name} goal! You need to save ${remaining:.2f} more "
+                            f"(${daily_needed:.2f} per day) to meet your deadline."
+                        ),
+                        metadata={
+                            "goal_id": goal.id,
+                            "goal_name": goal.name,
+                            "current_amount": goal.current_amount,
+                            "target_amount": goal.target_amount,
+                            "progress_percentage": progress_percent,
+                            "days_until_deadline": days_until_deadline,
+                            "amount_needed": remaining,
+                            "daily_amount_needed": daily_needed,
+                            "deadline_status": "approaching"
+                        }
+                    )
+                    if alert:
+                        created_alerts.append(alert)
 
         return created_alerts
 
