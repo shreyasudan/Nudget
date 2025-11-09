@@ -132,8 +132,8 @@ def generate_sample_data():
     generator = SyntheticDataGenerator()
     transactions = generator.generate_transactions(num_days=180, num_transactions=500)
 
-    csv_file = generator.save_to_csv(transactions, 'backend/sample_transactions.csv')
-    json_file = generator.save_to_json(transactions, 'backend/sample_transactions.json')
+    csv_file = generator.save_to_csv(transactions, 'sample_transactions.csv')
+    json_file = generator.save_to_json(transactions, 'sample_transactions.json')
 
     print(f"Generated {len(transactions)} transactions")
     print(f"CSV file saved: {csv_file}")

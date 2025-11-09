@@ -37,16 +37,16 @@ export default function SubscriptionList() {
     .reduce((sum, s) => sum + s.average_amount, 0);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          <span>Recurring Subscriptions</span>
-          <span className="text-sm font-normal text-muted-foreground">
+    <Card className="h-full flex flex-col bg-white" style={{ overflow: 'visible' }}>
+      <CardHeader className="bg-white" style={{ padding: '24px 36px 8px 36px', overflow: 'visible' }}>
+        <CardTitle className="flex items-center justify-between text-lg text-[#2C1810] font-normal" style={{ whiteSpace: 'nowrap', overflow: 'visible', width: '100%' }}>
+          <span>Alerts / Insights</span>
+          <span className="text-xs font-normal text-muted-foreground">
             ${totalMonthly.toFixed(2)}/month
           </span>
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-1">
         <div className="space-y-4">
           {grayCharges?.gray_charges?.length > 0 && (
             <div className="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">

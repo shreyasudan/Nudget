@@ -5,7 +5,11 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     DATABASE_URL: str
     ENCRYPTION_KEY: str
-    CORS_ORIGINS: str = "http://localhost:3000"
+    CORS_ORIGINS: str = "http://localhost:3000,http://localhost:3001"
+    JWT_SECRET_KEY: str = "jwt-secret-key-change-in-production"
+    JWT_ALGORITHM: str = "HS256"
+    JWT_EXPIRATION_HOURS: int = 24
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
     @property
     def cors_origins_list(self) -> List[str]:

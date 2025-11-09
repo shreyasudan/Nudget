@@ -8,29 +8,29 @@ import numpy as np
 
 class GoalService:
     @staticmethod
-    async def create_goal(db: AsyncSession, goal_data: GoalCreate) -> Goal:
-        goal = Goal(**goal_data.dict())
+    async def create_goal(db: AsyncSession, goal_data: GoalCreate, user_id: str) -> Goal:
+        goal = Goal(**goal_data.dict(), user_id=user_id)
         db.add(goal)
         await db.commit()
         await db.refresh(goal)
         return goal
 
     @staticmethod
-    async def get_all_goals(db: AsyncSession, active_only: bool = True) -> List[Goal]:
-        query = select(Goal)
+    async def get_all_goals(db: AsyncSession, user_id: str, active_only: bool = True) -> List[Goal]:
+        query = select(Goal).where(Goal.user_id == user_id)
         if active_only:
             query = query.where(Goal.is_active == True)
         result = await db.execute(query.order_by(Goal.deadline))
         return result.scalars().all()
 
     @staticmethod
-    async def get_goal(db: AsyncSession, goal_id: int) -> Optional[Goal]:
-        result = await db.execute(select(Goal).where(Goal.id == goal_id))
+    async def get_goal(db: AsyncSession, goal_id: int, user_id: str) -> Optional[Goal]:
+        result = await db.execute(select(Goal).where(and_(Goal.id == goal_id, Goal.user_id == user_id)))
         return result.scalar_one_or_none()
 
     @staticmethod
-    async def update_goal(db: AsyncSession, goal_id: int, goal_update: GoalUpdate) -> Optional[Goal]:
-        goal = await GoalService.get_goal(db, goal_id)
+    async def update_goal(db: AsyncSession, goal_id: int, goal_update: GoalUpdate, user_id: str) -> Optional[Goal]:
+        goal = await GoalService.get_goal(db, goal_id, user_id)
         if not goal:
             return None
 
@@ -44,8 +44,8 @@ class GoalService:
         return goal
 
     @staticmethod
-    async def delete_goal(db: AsyncSession, goal_id: int) -> bool:
-        goal = await GoalService.get_goal(db, goal_id)
+    async def delete_goal(db: AsyncSession, goal_id: int, user_id: str) -> bool:
+        goal = await GoalService.get_goal(db, goal_id, user_id)
         if not goal:
             return False
 
@@ -54,12 +54,13 @@ class GoalService:
         return True
 
     @staticmethod
-    async def calculate_savings_rate(db: AsyncSession) -> float:
+    async def calculate_savings_rate(db: AsyncSession, user_id: str) -> float:
         thirty_days_ago = datetime.utcnow() - timedelta(days=30)
 
         income_result = await db.execute(
             select(Transaction)
             .where(and_(
+                Transaction.user_id == user_id,
                 Transaction.transaction_type == 'income',
                 Transaction.date >= thirty_days_ago
             ))
@@ -70,6 +71,7 @@ class GoalService:
         expense_result = await db.execute(
             select(Transaction)
             .where(and_(
+                Transaction.user_id == user_id,
                 Transaction.transaction_type == 'expense',
                 Transaction.date >= thirty_days_ago
             ))
@@ -81,11 +83,11 @@ class GoalService:
         return max(0, monthly_savings)
 
     @staticmethod
-    async def project_goal_completion(db: AsyncSession, goal: Goal) -> Optional[datetime]:
+    async def project_goal_completion(db: AsyncSession, goal: Goal, user_id: str) -> Optional[datetime]:
         if goal.current_amount >= goal.target_amount:
             return datetime.utcnow()
 
-        monthly_savings = await GoalService.calculate_savings_rate(db)
+        monthly_savings = await GoalService.calculate_savings_rate(db, user_id)
 
         if monthly_savings <= 0:
             return None
@@ -97,8 +99,8 @@ class GoalService:
         return projected_date
 
     @staticmethod
-    async def update_goal_progress(db: AsyncSession, goal_id: int, amount_to_add: float) -> Optional[Goal]:
-        goal = await GoalService.get_goal(db, goal_id)
+    async def update_goal_progress(db: AsyncSession, goal_id: int, amount_to_add: float, user_id: str) -> Optional[Goal]:
+        goal = await GoalService.get_goal(db, goal_id, user_id)
         if not goal:
             return None
 
@@ -113,8 +115,8 @@ class GoalService:
         return goal
 
     @staticmethod
-    async def get_goal_recommendations(db: AsyncSession) -> List[dict]:
-        monthly_savings = await GoalService.calculate_savings_rate(db)
+    async def get_goal_recommendations(db: AsyncSession, user_id: str) -> List[dict]:
+        monthly_savings = await GoalService.calculate_savings_rate(db, user_id)
 
         recommendations = []
 

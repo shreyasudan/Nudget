@@ -71,9 +71,10 @@ class TransactionService:
         return transactions
 
     @staticmethod
-    async def bulk_create(db: AsyncSession, transactions: List[Dict[str, Any]]) -> int:
+    async def bulk_create(db: AsyncSession, transactions: List[Dict[str, Any]], user_id: str) -> int:
         created_count = 0
         for trans_data in transactions:
+            trans_data['user_id'] = user_id
             transaction = Transaction(**trans_data)
             db.add(transaction)
             created_count += 1
@@ -82,9 +83,10 @@ class TransactionService:
         return created_count
 
     @staticmethod
-    async def get_all(db: AsyncSession, skip: int = 0, limit: int = 100) -> List[Transaction]:
+    async def get_all(db: AsyncSession, user_id: str, skip: int = 0, limit: int = 100) -> List[Transaction]:
         result = await db.execute(
             select(Transaction)
+            .where(Transaction.user_id == user_id)
             .order_by(Transaction.date.desc())
             .offset(skip)
             .limit(limit)
@@ -94,12 +96,14 @@ class TransactionService:
     @staticmethod
     async def get_by_date_range(
         db: AsyncSession,
+        user_id: str,
         start_date: datetime,
         end_date: datetime
     ) -> List[Transaction]:
         result = await db.execute(
             select(Transaction)
             .where(and_(
+                Transaction.user_id == user_id,
                 Transaction.date >= start_date,
                 Transaction.date <= end_date
             ))
@@ -108,16 +112,22 @@ class TransactionService:
         return result.scalars().all()
 
     @staticmethod
-    async def get_spending_overview(db: AsyncSession) -> Dict[str, Any]:
+    async def get_spending_overview(db: AsyncSession, user_id: str) -> Dict[str, Any]:
         income_result = await db.execute(
             select(func.sum(Transaction.amount))
-            .where(Transaction.transaction_type == 'income')
+            .where(and_(
+                Transaction.user_id == user_id,
+                Transaction.transaction_type == 'income'
+            ))
         )
         total_income = income_result.scalar() or 0.0
 
         expense_result = await db.execute(
             select(func.sum(Transaction.amount))
-            .where(Transaction.transaction_type == 'expense')
+            .where(and_(
+                Transaction.user_id == user_id,
+                Transaction.transaction_type == 'expense'
+            ))
         )
         total_expenses = expense_result.scalar() or 0.0
 
@@ -126,7 +136,10 @@ class TransactionService:
                 Transaction.category,
                 func.sum(Transaction.amount).label('total')
             )
-            .where(Transaction.transaction_type == 'expense')
+            .where(and_(
+                Transaction.user_id == user_id,
+                Transaction.transaction_type == 'expense'
+            ))
             .group_by(Transaction.category)
         )
         categories = {row.category: float(row.total) for row in category_result}
@@ -137,6 +150,7 @@ class TransactionService:
                 Transaction.transaction_type,
                 func.sum(Transaction.amount).label('total')
             )
+            .where(Transaction.user_id == user_id)
             .group_by('month', Transaction.transaction_type)
             .order_by('month')
         )

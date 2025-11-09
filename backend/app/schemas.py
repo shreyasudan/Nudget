@@ -1,7 +1,33 @@
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, validator, EmailStr
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 from enum import Enum
+
+class UserBase(BaseModel):
+    email: EmailStr
+    name: Optional[str] = None
+
+class UserCreate(UserBase):
+    password: str = Field(..., min_length=8)
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+class UserResponse(UserBase):
+    id: str
+    is_active: bool
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+
+class TokenData(BaseModel):
+    user_id: Optional[str] = None
 
 class TransactionType(str, Enum):
     income = "income"
@@ -45,7 +71,14 @@ class GoalBase(BaseModel):
 
     @validator('deadline')
     def deadline_must_be_future(cls, v):
-        if v <= datetime.now():
+        # Handle both timezone-aware and naive datetimes
+        now = datetime.now()
+        # If v is timezone-aware, make now timezone-aware too
+        if v.tzinfo is not None and v.tzinfo.utcoffset(v) is not None:
+            from datetime import timezone
+            now = datetime.now(timezone.utc)
+        # If v is naive, compare with naive now (already set above)
+        if v <= now:
             raise ValueError('Deadline must be in the future')
         return v
 
@@ -117,3 +150,71 @@ class FileUploadResponse(BaseModel):
     message: str
     transactions_imported: int
     errors: List[str] = []
+
+class BudgetBase(BaseModel):
+    category: Optional[str] = Field(None, max_length=100)  # None for overall budget
+    amount_monthly: float = Field(..., gt=0)
+    currency: str = Field("USD", max_length=10)
+
+class BudgetCreate(BudgetBase):
+    pass
+
+class BudgetUpdate(BaseModel):
+    category: Optional[str] = Field(None, max_length=100)
+    amount_monthly: Optional[float] = Field(None, gt=0)
+    currency: Optional[str] = Field(None, max_length=10)
+    is_active: Optional[bool] = None
+
+class BudgetResponse(BudgetBase):
+    id: str
+    user_id: str
+    is_active: bool = True
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class BudgetUsage(BaseModel):
+    budget_id: str
+    category: Optional[str]
+    budgeted_amount: float
+    spent_amount: float
+    remaining_amount: float
+    percent_used: float
+    status: str  # "ok", "warning", "danger"
+    currency: str
+
+class AlertType(str, Enum):
+    ANOMALY = "ANOMALY"
+    BUDGET_WARNING = "BUDGET_WARNING"
+    GOAL_PROGRESS = "GOAL_PROGRESS"
+    SUMMARY = "SUMMARY"
+
+class AlertBase(BaseModel):
+    type: AlertType
+    title: str = Field(..., min_length=1, max_length=255)
+    description: str
+    metadata: Optional[Dict[str, Any]] = None
+
+class AlertCreate(AlertBase):
+    pass
+
+class AlertResponse(AlertBase):
+    id: str
+    user_id: str
+    is_read: bool = False
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class MarkAlertsReadRequest(BaseModel):
+    ids: List[str]
+
+class DashboardOverview(BaseModel):
+    summary: Dict[str, float]  # total_income, total_expenses, net_savings
+    income_vs_expenses: List[Dict[str, Any]]
+    spending_by_category: List[Dict[str, Any]]
+    budget_usage: List[BudgetUsage]
+    recent_alerts: List[AlertResponse]

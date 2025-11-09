@@ -1,0 +1,507 @@
+date,amount,merchant,category,description,transaction_type
+2025-05-10T19:21:33.292856,15.885965363040825,Netflix,subscription,Netflix monthly subscription,expense
+2025-05-10T19:21:33.292856,52.79059504492475,Adobe Creative,subscription,Adobe Creative monthly subscription,expense
+2025-05-10T19:21:33.292856,10.122863039500464,Planet Fitness,fitness,Planet Fitness monthly subscription,expense
+2025-05-10T19:21:33.292856,150.06800401018177,CrossFit Gym,fitness,CrossFit Gym monthly subscription,expense
+2025-05-11T19:21:33.292856,10.359422230495161,Spotify,subscription,Spotify monthly subscription,expense
+2025-05-11T19:21:33.292856,15.305807721443305,Amazon Prime,subscription,Amazon Prime monthly subscription,expense
+2025-05-11T19:21:33.292856,12.785938338304105,Hulu,subscription,Hulu monthly subscription,expense
+2025-05-12T04:17:33.292856,283.0,Gas Company,utilities,Purchase at Gas Company,expense
+2025-05-12T06:02:33.292856,279.06,Gas Company,utilities,Purchase at Gas Company,expense
+2025-05-12T09:24:33.292856,60.33,Concert Venue,entertainment,Purchase at Concert Venue,expense
+2025-05-12T18:01:33.292856,75.66,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-05-12T19:21:33.292856,8.129432353926786,Disney Plus,subscription,Disney Plus monthly subscription,expense
+2025-05-12T19:21:33.292856,89.32287366211906,Yoga Studio,fitness,Yoga Studio monthly subscription,expense
+2025-05-13T19:21:33.292856,5.032483834185607,GitHub Pro,subscription,GitHub Pro monthly subscription,expense
+2025-05-13T19:21:33.292856,40.439691110849495,24 Hour Fitness,fitness,24 Hour Fitness monthly subscription,expense
+2025-05-14T19:23:33.292856,330.62,Apple Store,shopping,Purchase at Apple Store,expense
+2025-05-14T19:55:33.292856,117.3,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-05-14T21:32:33.292856,473.79,Walmart,shopping,Purchase at Walmart,expense
+2025-05-15T02:01:33.292856,48.46,PlayStation Store,entertainment,Purchase at PlayStation Store,expense
+2025-05-15T12:17:33.292856,435.24,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-05-15T20:58:33.292856,15.97,Concert Venue,entertainment,Purchase at Concert Venue,expense
+2025-05-15T22:27:33.292856,157.64,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-05-16T20:40:33.292856,40.08,Amazon,shopping,Purchase at Amazon,expense
+2025-05-17T04:24:33.292856,630.27,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-05-17T19:11:33.292856,43.87,Chevron,transport,Purchase at Chevron,expense
+2025-05-18T17:57:33.292856,102.25,Home Depot,shopping,Purchase at Home Depot,expense
+2025-05-18T23:20:33.292856,74.53,Chevron,transport,Purchase at Chevron,expense
+2025-05-19T04:54:33.292856,191.84,Walmart,shopping,Purchase at Walmart,expense
+2025-05-19T14:16:33.292856,870.46,Gas Company,utilities,Purchase at Gas Company,expense
+2025-05-19T17:15:33.292856,201.59,Amazon Prime,subscription,Purchase at Amazon Prime,expense
+2025-05-19T19:52:33.292856,55.19,McDonalds,restaurant,Purchase at McDonalds,expense
+2025-05-19T22:43:33.292856,381.4,Home Depot,shopping,Purchase at Home Depot,expense
+2025-05-20T01:43:33.292856,150.72,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-05-20T20:11:33.292856,34.05,Chevron,transport,Purchase at Chevron,expense
+2025-05-23T09:58:33.292856,288.87,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-05-23T13:57:33.292856,24.33,Netflix,subscription,Purchase at Netflix,expense
+2025-05-23T15:06:33.292856,45.94,Spotify,subscription,Purchase at Spotify,expense
+2025-05-23T15:48:33.292856,103.65,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-05-23T19:29:33.292856,293.95,Apple Store,shopping,Purchase at Apple Store,expense
+2025-05-23T20:40:33.292856,113.39,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-05-24T05:32:33.292856,337.62,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-05-25T13:44:33.292856,26.44,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-05-25T15:23:33.292856,348.07,Apple Store,shopping,Purchase at Apple Store,expense
+2025-05-26T07:14:33.292856,52.69,Starbucks,restaurant,Purchase at Starbucks,expense
+2025-05-26T19:21:33.292856,4517.57481710866,Employer Inc,income,Monthly salary,income
+2025-05-27T21:21:33.292856,109.21,PlayStation Store,entertainment,Purchase at PlayStation Store,expense
+2025-05-28T07:46:33.292856,60.55,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-05-28T08:32:33.292856,124.67,Gas Company,utilities,Purchase at Gas Company,expense
+2025-05-28T15:13:33.292856,179.53,Amazon,shopping,Purchase at Amazon,expense
+2025-05-28T17:49:33.292856,105.23,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-05-29T00:09:33.292856,1194.2,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-05-29T10:29:33.292856,60.49,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-05-29T13:01:33.292856,25.03,Netflix,subscription,Purchase at Netflix,expense
+2025-05-29T18:57:33.292856,178.43,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-05-30T15:20:33.292856,59.74,Chevron,transport,Purchase at Chevron,expense
+2025-05-30T21:17:33.292856,96.27,Kroger,grocery,Purchase at Kroger,expense
+2025-05-30T23:59:33.292856,52.51,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-05-31T03:41:33.292856,150.2,Best Buy,shopping,Purchase at Best Buy,expense
+2025-05-31T06:19:33.292856,88.99,Water Company,utilities,Purchase at Water Company,expense
+2025-05-31T08:01:33.292856,331.07,Dentist,healthcare,Purchase at Dentist,expense
+2025-05-31T09:05:33.292856,34.88,PlayStation Store,entertainment,Purchase at PlayStation Store,expense
+2025-05-31T23:05:33.292856,29.35,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-06-01T05:44:33.292856,75.77,Hulu,subscription,Purchase at Hulu,expense
+2025-06-01T09:14:33.292856,227.2,Dentist,healthcare,Purchase at Dentist,expense
+2025-06-01T12:35:33.292856,1818.09,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-06-01T15:01:33.292856,130.66,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-06-01T17:46:33.292856,31.26,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-06-02T07:04:33.292856,1316.72,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-06-02T21:33:33.292856,85.72,Chevron,transport,Purchase at Chevron,expense
+2025-06-03T01:26:33.292856,138.18,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-06-03T16:32:33.292856,55.61,Subway,restaurant,Purchase at Subway,expense
+2025-06-03T21:09:33.292856,42.97,McDonalds,restaurant,Purchase at McDonalds,expense
+2025-06-03T23:27:33.292856,49.0,Pizza Hut,restaurant,Purchase at Pizza Hut,expense
+2025-06-04T00:18:33.292856,76.54,Uber,transport,Purchase at Uber,expense
+2025-06-04T20:45:33.292856,69.04,Dentist,healthcare,Purchase at Dentist,expense
+2025-06-06T14:14:33.292856,135.43,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-06-07T02:52:33.292856,156.94,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-06-08T17:59:33.292856,45.05,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-06-08T19:21:33.292856,16.479573552117053,Netflix,subscription,Netflix monthly subscription,expense
+2025-06-08T19:21:33.292856,53.17227756326635,Adobe Creative,subscription,Adobe Creative monthly subscription,expense
+2025-06-08T19:21:33.292856,4.811792708670489,GitHub Pro,subscription,GitHub Pro monthly subscription,expense
+2025-06-08T20:01:33.292856,31.89,Spotify,subscription,Purchase at Spotify,expense
+2025-06-09T19:21:33.292856,14.915816827257633,Amazon Prime,subscription,Amazon Prime monthly subscription,expense
+2025-06-09T19:21:33.292856,13.38984339094402,Hulu,subscription,Hulu monthly subscription,expense
+2025-06-09T19:21:33.292856,89.24347215580708,Yoga Studio,fitness,Yoga Studio monthly subscription,expense
+2025-06-10T10:02:33.292856,315.71,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-06-10T14:40:33.292856,307.92,Public Transit,transport,Purchase at Public Transit,expense
+2025-06-10T14:58:33.292856,380.0,Best Buy,shopping,Purchase at Best Buy,expense
+2025-06-10T15:10:33.292856,38.68,Whole Foods,grocery,Purchase at Whole Foods,expense
+2025-06-10T19:21:33.292856,10.051852103709894,Spotify,subscription,Spotify monthly subscription,expense
+2025-06-10T19:21:33.292856,7.491634497561902,Disney Plus,subscription,Disney Plus monthly subscription,expense
+2025-06-10T19:21:33.292856,150.41311695428584,CrossFit Gym,fitness,CrossFit Gym monthly subscription,expense
+2025-06-10T23:00:33.292856,62.76,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-06-11T05:08:33.292856,21.0,Hulu,subscription,Purchase at Hulu,expense
+2025-06-11T19:21:33.292856,40.21416326802177,24 Hour Fitness,fitness,24 Hour Fitness monthly subscription,expense
+2025-06-12T13:02:33.292856,60.25,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-06-12T16:21:33.292856,48.61,Pizza Hut,restaurant,Purchase at Pizza Hut,expense
+2025-06-12T19:21:33.292856,9.576144060191663,Planet Fitness,fitness,Planet Fitness monthly subscription,expense
+2025-06-14T08:12:33.292856,107.58,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-06-14T13:07:33.292856,78.5,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-06-14T18:18:33.292856,396.76,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-06-15T02:45:33.292856,30.45,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-06-15T16:28:33.292856,117.93,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-06-16T19:16:33.292856,427.68,Apple Store,shopping,Purchase at Apple Store,expense
+2025-06-16T21:05:33.292856,130.82,Kroger,grocery,Purchase at Kroger,expense
+2025-06-16T21:13:33.292856,142.82,Apple Store,shopping,Purchase at Apple Store,expense
+2025-06-17T05:17:33.292856,221.47,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-06-17T07:38:33.292856,172.73,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-06-18T18:04:33.292856,183.39,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-06-18T18:39:33.292856,151.01,Gas Company,utilities,Purchase at Gas Company,expense
+2025-06-18T21:46:33.292856,20.14,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-06-19T01:36:33.292856,246.9,Disney Plus,subscription,Purchase at Disney Plus,expense
+2025-06-19T07:34:33.292856,319.72,Chevron,transport,Purchase at Chevron,expense
+2025-06-19T10:43:33.292856,72.16,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-06-19T20:55:33.292856,136.14,Safeway,grocery,Purchase at Safeway,expense
+2025-06-20T20:25:33.292856,93.74,Adobe Creative,subscription,Purchase at Adobe Creative,expense
+2025-06-20T21:32:33.292856,353.84,Lyft,transport,Purchase at Lyft,expense
+2025-06-21T06:55:33.292856,44.21,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-06-21T22:04:33.292856,41.4,Hulu,subscription,Purchase at Hulu,expense
+2025-06-22T05:08:33.292856,142.86,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-06-22T05:11:33.292856,87.39,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-06-22T07:31:33.292856,22.01,Spotify,subscription,Purchase at Spotify,expense
+2025-06-23T18:07:33.292856,36.16,GitHub Pro,subscription,Purchase at GitHub Pro,expense
+2025-06-25T05:45:33.292856,90.09,Lyft,transport,Purchase at Lyft,expense
+2025-06-25T12:29:33.292856,368.97,Home Depot,shopping,Purchase at Home Depot,expense
+2025-06-25T17:47:33.292856,441.17,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-06-25T19:21:33.292856,4709.847694527793,Employer Inc,income,Monthly salary,income
+2025-06-26T01:25:33.292856,116.16,Apple Store,shopping,Purchase at Apple Store,expense
+2025-06-26T06:34:33.292856,282.45,Water Company,utilities,Purchase at Water Company,expense
+2025-06-26T15:36:33.292856,70.32,Shell Gas Station,transport,Purchase at Shell Gas Station,expense
+2025-06-27T01:57:33.292856,69.31,Public Transit,transport,Purchase at Public Transit,expense
+2025-06-27T17:31:33.292856,151.39,Whole Foods,grocery,Purchase at Whole Foods,expense
+2025-06-27T17:38:33.292856,212.24,PG&E Electric,utilities,Purchase at PG&E Electric,expense
+2025-06-27T19:26:33.292856,48.98,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-06-27T20:24:33.292856,63.7,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-06-28T21:51:33.292856,370.5,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-06-29T00:29:33.292856,70.78,Shell Gas Station,transport,Purchase at Shell Gas Station,expense
+2025-07-01T17:59:33.292856,487.46,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-07-02T07:56:33.292856,42.33,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-07-02T07:57:33.292856,66.88,Shell Gas Station,transport,Purchase at Shell Gas Station,expense
+2025-07-02T20:13:33.292856,10.03,Subway,restaurant,Purchase at Subway,expense
+2025-07-04T10:15:33.292856,113.23,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-07-06T10:27:33.292856,53.88,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-07-06T22:51:33.292856,9.17,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-07-07T10:21:33.292856,41.2,Starbucks,restaurant,Purchase at Starbucks,expense
+2025-07-07T19:05:33.292856,258.21,Dentist,healthcare,Purchase at Dentist,expense
+2025-07-07T22:21:33.292856,119.64,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-07-08T19:21:33.292856,13.350281590986839,Hulu,subscription,Hulu monthly subscription,expense
+2025-07-08T19:21:33.292856,7.668457550406399,Disney Plus,subscription,Disney Plus monthly subscription,expense
+2025-07-08T22:25:33.292856,170.46,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-07-09T01:59:33.292856,10.42,Chevron,transport,Purchase at Chevron,expense
+2025-07-09T02:21:33.292856,282.05,Home Depot,shopping,Purchase at Home Depot,expense
+2025-07-09T07:54:33.292856,57.36,Safeway,grocery,Purchase at Safeway,expense
+2025-07-09T16:00:33.292856,37.71,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-07-09T19:21:33.292856,10.393067788912006,Planet Fitness,fitness,Planet Fitness monthly subscription,expense
+2025-07-09T22:45:33.292856,79.45,Public Transit,transport,Purchase at Public Transit,expense
+2025-07-10T09:10:33.292856,39.32,Starbucks,restaurant,Purchase at Starbucks,expense
+2025-07-10T16:26:33.292856,1746.94,Home Depot,shopping,Purchase at Home Depot,expense
+2025-07-10T19:21:33.292856,16.271298406952617,Netflix,subscription,Netflix monthly subscription,expense
+2025-07-10T19:21:33.292856,89.17368735517384,Yoga Studio,fitness,Yoga Studio monthly subscription,expense
+2025-07-10T19:21:33.292856,150.14953876974437,CrossFit Gym,fitness,CrossFit Gym monthly subscription,expense
+2025-07-11T04:34:33.292856,40.21,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-07-11T05:23:33.292856,63.38,Uber,transport,Purchase at Uber,expense
+2025-07-11T19:21:33.292856,10.424125610954096,Spotify,subscription,Spotify monthly subscription,expense
+2025-07-11T19:21:33.292856,14.598257897784569,Amazon Prime,subscription,Amazon Prime monthly subscription,expense
+2025-07-11T19:21:33.292856,53.00270983640225,Adobe Creative,subscription,Adobe Creative monthly subscription,expense
+2025-07-11T19:21:33.292856,5.245421156415207,GitHub Pro,subscription,GitHub Pro monthly subscription,expense
+2025-07-11T19:21:33.292856,39.938270660859956,24 Hour Fitness,fitness,24 Hour Fitness monthly subscription,expense
+2025-07-11T19:35:33.292856,33.89,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-07-11T21:25:33.292856,226.01,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-07-12T03:26:33.292856,352.34,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-07-12T15:13:33.292856,1649.74,Amazon,shopping,Purchase at Amazon,expense
+2025-07-12T15:20:33.292856,138.14,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-07-13T00:05:33.292856,116.22,Home Depot,shopping,Purchase at Home Depot,expense
+2025-07-13T10:19:33.292856,52.81,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-07-13T19:03:33.292856,49.62,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-07-14T09:19:33.292856,65.69,Concert Venue,entertainment,Purchase at Concert Venue,expense
+2025-07-15T02:39:33.292856,377.07,Amazon,shopping,Purchase at Amazon,expense
+2025-07-15T03:55:33.292856,26.96,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-07-15T11:20:33.292856,55.4,Amazon Prime,subscription,Purchase at Amazon Prime,expense
+2025-07-16T03:40:33.292856,175.33,Walmart,shopping,Purchase at Walmart,expense
+2025-07-16T22:20:33.292856,51.63,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-07-17T06:02:33.292856,107.4,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-07-17T23:09:33.292856,289.01,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-07-18T01:29:33.292856,133.84,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-07-18T08:37:33.292856,66.32,Disney Plus,subscription,Purchase at Disney Plus,expense
+2025-07-18T12:35:33.292856,69.28,Uber,transport,Purchase at Uber,expense
+2025-07-19T17:53:33.292856,49.36,Disney Plus,subscription,Purchase at Disney Plus,expense
+2025-07-19T20:03:33.292856,88.7,Netflix,subscription,Purchase at Netflix,expense
+2025-07-20T00:43:33.292856,96.5,Adobe Creative,subscription,Purchase at Adobe Creative,expense
+2025-07-20T15:05:33.292856,98.15,Hulu,subscription,Purchase at Hulu,expense
+2025-07-21T02:28:33.292856,246.84,Water Company,utilities,Purchase at Water Company,expense
+2025-07-21T20:48:33.292856,207.51,Amazon,shopping,Purchase at Amazon,expense
+2025-07-22T02:34:33.292856,69.15,Water Company,utilities,Purchase at Water Company,expense
+2025-07-22T08:21:33.292856,49.28,McDonalds,restaurant,Purchase at McDonalds,expense
+2025-07-22T08:37:33.292856,46.09,Lyft,transport,Purchase at Lyft,expense
+2025-07-22T12:31:33.292856,421.31,Amazon,shopping,Purchase at Amazon,expense
+2025-07-23T13:25:33.292856,38.12,Concert Venue,entertainment,Purchase at Concert Venue,expense
+2025-07-24T03:03:33.292856,253.7,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-07-24T07:56:33.292856,43.94,Adobe Creative,subscription,Purchase at Adobe Creative,expense
+2025-07-24T16:10:33.292856,111.45,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-07-25T10:42:33.292856,53.52,Lyft,transport,Purchase at Lyft,expense
+2025-07-25T12:23:33.292856,18.46,Amazon Prime,subscription,Purchase at Amazon Prime,expense
+2025-07-25T14:27:33.292856,46.98,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-07-25T15:13:33.292856,135.72,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-07-25T19:21:33.292856,5022.36887267417,Employer Inc,income,Monthly salary,income
+2025-07-25T23:37:33.292856,12.87,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-07-26T05:47:33.292856,143.04,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-07-27T08:04:33.292856,338.83,Best Buy,shopping,Purchase at Best Buy,expense
+2025-07-27T15:43:33.292856,136.92,Dentist,healthcare,Purchase at Dentist,expense
+2025-07-28T00:44:33.292856,281.94,Dentist,healthcare,Purchase at Dentist,expense
+2025-07-28T08:01:33.292856,39.1,Adobe Creative,subscription,Purchase at Adobe Creative,expense
+2025-07-28T21:25:33.292856,110.57,Gas Company,utilities,Purchase at Gas Company,expense
+2025-07-29T00:33:33.292856,66.36,Adobe Creative,subscription,Purchase at Adobe Creative,expense
+2025-07-29T04:15:33.292856,140.47,Health Insurance,healthcare,Purchase at Health Insurance,expense
+2025-07-30T07:01:33.292856,77.34,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-07-30T14:43:33.292856,41.78,Pizza Hut,restaurant,Purchase at Pizza Hut,expense
+2025-07-30T16:07:33.292856,73.54,Chevron,transport,Purchase at Chevron,expense
+2025-07-31T12:24:33.292856,49.07,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-07-31T19:24:33.292856,139.76,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-08-01T04:20:33.292856,275.52,Amazon,shopping,Purchase at Amazon,expense
+2025-08-01T05:18:33.292856,138.77,Gas Company,utilities,Purchase at Gas Company,expense
+2025-08-01T20:25:33.292856,10.06,McDonalds,restaurant,Purchase at McDonalds,expense
+2025-08-02T03:58:33.292856,112.96,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-08-02T04:55:33.292856,47.26,Best Buy,shopping,Purchase at Best Buy,expense
+2025-08-02T11:07:33.292856,12.73,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-08-02T23:07:33.292856,18.83,Public Transit,transport,Purchase at Public Transit,expense
+2025-08-03T04:51:33.292856,27.14,McDonalds,restaurant,Purchase at McDonalds,expense
+2025-08-03T05:56:33.292856,52.44,Hulu,subscription,Purchase at Hulu,expense
+2025-08-03T10:02:33.292856,80.67,Lyft,transport,Purchase at Lyft,expense
+2025-08-04T06:41:33.292856,87.8,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-08-04T06:58:33.292856,191.68,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-08-04T13:57:33.292856,55.03,Lyft,transport,Purchase at Lyft,expense
+2025-08-04T16:22:33.292856,10.53,Hulu,subscription,Purchase at Hulu,expense
+2025-08-04T20:42:33.292856,357.93,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-08-05T12:14:33.292856,21.51,Subway,restaurant,Purchase at Subway,expense
+2025-08-05T12:35:33.292856,49.8,Best Buy,shopping,Purchase at Best Buy,expense
+2025-08-05T22:05:33.292856,41.89,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-08-06T02:05:33.292856,458.24,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-08-06T19:38:33.292856,90.08,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-08-07T06:15:33.292856,79.51,Lyft,transport,Purchase at Lyft,expense
+2025-08-07T18:44:33.292856,80.52,PlayStation Store,entertainment,Purchase at PlayStation Store,expense
+2025-08-07T19:21:33.292856,12.959902737363079,Hulu,subscription,Hulu monthly subscription,expense
+2025-08-07T21:32:33.292856,159.64,Apple Store,shopping,Purchase at Apple Store,expense
+2025-08-08T08:50:33.292856,109.12,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-08-08T12:12:33.292856,161.45,Whole Foods,grocery,Purchase at Whole Foods,expense
+2025-08-08T14:58:33.292856,24.25,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-08-08T19:21:33.292856,7.7028378104864395,Disney Plus,subscription,Disney Plus monthly subscription,expense
+2025-08-08T19:21:33.292856,52.95028395313067,Adobe Creative,subscription,Adobe Creative monthly subscription,expense
+2025-08-08T19:21:33.292856,40.39387789635308,24 Hour Fitness,fitness,24 Hour Fitness monthly subscription,expense
+2025-08-08T19:21:33.292856,10.431316173377068,Planet Fitness,fitness,Planet Fitness monthly subscription,expense
+2025-08-08T22:36:33.292856,475.91,Health Insurance,healthcare,Purchase at Health Insurance,expense
+2025-08-09T00:05:33.292856,51.08,Amazon Prime,subscription,Purchase at Amazon Prime,expense
+2025-08-09T03:30:33.292856,88.9,Uber,transport,Purchase at Uber,expense
+2025-08-09T10:26:33.292856,389.59,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-08-09T19:21:33.292856,10.109351048837278,Spotify,subscription,Spotify monthly subscription,expense
+2025-08-09T19:21:33.292856,88.70551933590696,Yoga Studio,fitness,Yoga Studio monthly subscription,expense
+2025-08-09T21:30:33.292856,320.7,Walmart,shopping,Purchase at Walmart,expense
+2025-08-10T04:42:33.292856,160.28,Best Buy,shopping,Purchase at Best Buy,expense
+2025-08-10T10:37:33.292856,89.47,Chevron,transport,Purchase at Chevron,expense
+2025-08-10T13:32:33.292856,42.56,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-08-10T18:59:33.292856,83.55,Netflix,subscription,Purchase at Netflix,expense
+2025-08-10T19:21:33.292856,4.5045710498629905,GitHub Pro,subscription,GitHub Pro monthly subscription,expense
+2025-08-10T19:21:33.292856,149.90986615498477,CrossFit Gym,fitness,CrossFit Gym monthly subscription,expense
+2025-08-11T03:39:33.292856,30.56,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-08-11T07:58:33.292856,47.49,Amazon Prime,subscription,Purchase at Amazon Prime,expense
+2025-08-11T13:25:33.292856,221.35,Dentist,healthcare,Purchase at Dentist,expense
+2025-08-11T19:21:33.292856,15.58008361084263,Netflix,subscription,Netflix monthly subscription,expense
+2025-08-11T19:21:33.292856,15.486919179007915,Amazon Prime,subscription,Amazon Prime monthly subscription,expense
+2025-08-11T19:37:33.292856,55.61,Whole Foods,grocery,Purchase at Whole Foods,expense
+2025-08-12T08:00:33.292856,131.46,Concert Venue,entertainment,Purchase at Concert Venue,expense
+2025-08-12T18:00:33.292856,137.65,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-08-12T19:17:33.292856,97.35,Chevron,transport,Purchase at Chevron,expense
+2025-08-12T21:15:33.292856,97.41,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-08-12T21:25:33.292856,157.64,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-08-13T19:23:33.292856,345.13,Dentist,healthcare,Purchase at Dentist,expense
+2025-08-14T06:04:33.292856,25.8,Apple Store,shopping,Purchase at Apple Store,expense
+2025-08-14T19:49:33.292856,16.23,Subway,restaurant,Purchase at Subway,expense
+2025-08-14T21:17:33.292856,351.67,Apple Store,shopping,Purchase at Apple Store,expense
+2025-08-15T13:29:33.292856,83.37,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-08-15T16:02:33.292856,15.87,Starbucks,restaurant,Purchase at Starbucks,expense
+2025-08-15T19:59:33.292856,25.07,Thai Express,restaurant,Purchase at Thai Express,expense
+2025-08-15T23:15:33.292856,122.49,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-08-17T00:22:33.292856,342.31,Health Insurance,healthcare,Purchase at Health Insurance,expense
+2025-08-17T00:38:33.292856,441.33,Health Insurance,healthcare,Purchase at Health Insurance,expense
+2025-08-17T21:02:33.292856,29.31,Shell Gas Station,transport,Purchase at Shell Gas Station,expense
+2025-08-18T10:15:33.292856,97.01,Concert Venue,entertainment,Purchase at Concert Venue,expense
+2025-08-19T03:09:33.292856,132.92,Whole Foods,grocery,Purchase at Whole Foods,expense
+2025-08-19T06:58:33.292856,362.09,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-08-19T09:11:33.292856,74.44,Health Insurance,healthcare,Purchase at Health Insurance,expense
+2025-08-19T14:13:33.292856,74.18,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-08-19T22:11:33.292856,231.02,Walmart,shopping,Purchase at Walmart,expense
+2025-08-20T02:46:33.292856,279.85,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-08-20T18:03:33.292856,214.07,Disney Plus,subscription,Purchase at Disney Plus,expense
+2025-08-21T01:57:33.292856,65.81,Public Transit,transport,Purchase at Public Transit,expense
+2025-08-22T13:18:33.292856,34.56,Shell Gas Station,transport,Purchase at Shell Gas Station,expense
+2025-08-24T10:30:33.292856,71.13,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-08-24T10:55:33.292856,57.48,Uber,transport,Purchase at Uber,expense
+2025-08-24T12:27:33.292856,409.26,Walmart,shopping,Purchase at Walmart,expense
+2025-08-24T19:21:33.292856,4801.990450627723,Employer Inc,income,Monthly salary,income
+2025-08-25T07:18:33.292856,213.3,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-08-25T09:41:33.292856,26.43,Lyft,transport,Purchase at Lyft,expense
+2025-08-25T12:37:33.292856,220.19,PG&E Electric,utilities,Purchase at PG&E Electric,expense
+2025-08-26T02:51:33.292856,175.62,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-08-26T13:19:33.292856,120.08,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-08-26T19:08:33.292856,99.0,Spotify,subscription,Purchase at Spotify,expense
+2025-08-27T00:19:33.292856,436.39,Dentist,healthcare,Purchase at Dentist,expense
+2025-08-27T17:25:33.292856,206.79,Water Company,utilities,Purchase at Water Company,expense
+2025-08-28T00:12:33.292856,99.46,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-08-28T16:29:33.292856,23.12,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-08-28T16:48:33.292856,786.66,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-08-28T19:35:33.292856,23.62,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-08-29T12:04:33.292856,74.78,Uber,transport,Purchase at Uber,expense
+2025-08-30T21:23:33.292856,443.52,Dentist,healthcare,Purchase at Dentist,expense
+2025-08-30T21:58:33.292856,161.68,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-08-31T12:55:33.292856,21.54,McDonalds,restaurant,Purchase at McDonalds,expense
+2025-09-01T01:13:33.292856,62.27,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-09-01T03:26:33.292856,172.63,Kroger,grocery,Purchase at Kroger,expense
+2025-09-01T16:33:33.292856,419.21,Walmart,shopping,Purchase at Walmart,expense
+2025-09-01T18:10:33.292856,91.95,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-09-01T20:18:33.292856,235.36,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-09-02T12:00:33.292856,44.87,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-09-02T14:01:33.292856,125.97,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-09-03T16:26:33.292856,61.33,Public Transit,transport,Purchase at Public Transit,expense
+2025-09-03T18:49:33.292856,293.24,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-09-04T04:04:33.292856,485.14,Walmart,shopping,Purchase at Walmart,expense
+2025-09-04T10:59:33.292856,26.94,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-09-04T18:06:33.292856,187.98,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-09-04T18:26:33.292856,25.04,GitHub Pro,subscription,Purchase at GitHub Pro,expense
+2025-09-05T00:58:33.292856,166.83,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-09-05T12:41:33.292856,56.38,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-09-05T13:09:33.292856,35.9,Safeway,grocery,Purchase at Safeway,expense
+2025-09-05T17:04:33.292856,98.69,Chevron,transport,Purchase at Chevron,expense
+2025-09-05T21:32:33.292856,50.78,Chevron,transport,Purchase at Chevron,expense
+2025-09-06T19:21:33.292856,40.05535436158841,24 Hour Fitness,fitness,24 Hour Fitness monthly subscription,expense
+2025-09-06T19:21:33.292856,9.582530008661927,Planet Fitness,fitness,Planet Fitness monthly subscription,expense
+2025-09-06T19:21:33.292856,89.30747426785989,Yoga Studio,fitness,Yoga Studio monthly subscription,expense
+2025-09-06T23:47:33.292856,32.35,Thai Express,restaurant,Purchase at Thai Express,expense
+2025-09-07T06:57:33.292856,90.35,Uber,transport,Purchase at Uber,expense
+2025-09-07T08:51:33.292856,73.58,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-09-07T10:25:33.292856,114.03,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-09-07T13:33:33.292856,15.56,Spotify,subscription,Purchase at Spotify,expense
+2025-09-07T18:52:33.292856,1808.46,Best Buy,shopping,Purchase at Best Buy,expense
+2025-09-07T19:21:33.292856,150.1523093119531,CrossFit Gym,fitness,CrossFit Gym monthly subscription,expense
+2025-09-07T23:57:33.292856,41.26,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-09-08T17:40:33.292856,497.57,Home Depot,shopping,Purchase at Home Depot,expense
+2025-09-08T19:21:33.292856,12.544110520892746,Hulu,subscription,Hulu monthly subscription,expense
+2025-09-08T19:21:33.292856,4.910388279581566,GitHub Pro,subscription,GitHub Pro monthly subscription,expense
+2025-09-09T04:49:33.292856,71.92,Hulu,subscription,Purchase at Hulu,expense
+2025-09-09T07:24:33.292856,400.96,Amazon,shopping,Purchase at Amazon,expense
+2025-09-09T12:02:33.292856,78.96,Uber,transport,Purchase at Uber,expense
+2025-09-09T19:21:33.292856,16.28477383570198,Netflix,subscription,Netflix monthly subscription,expense
+2025-09-09T19:21:33.292856,15.080493919751213,Amazon Prime,subscription,Amazon Prime monthly subscription,expense
+2025-09-09T19:21:33.292856,7.883049881968141,Disney Plus,subscription,Disney Plus monthly subscription,expense
+2025-09-09T19:21:33.292856,52.93353516810671,Adobe Creative,subscription,Adobe Creative monthly subscription,expense
+2025-09-10T04:43:33.292856,24.53,McDonalds,restaurant,Purchase at McDonalds,expense
+2025-09-10T06:31:33.292856,98.48,Chevron,transport,Purchase at Chevron,expense
+2025-09-10T08:36:33.292856,40.1,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-09-10T08:45:33.292856,34.11,Subway,restaurant,Purchase at Subway,expense
+2025-09-10T09:38:33.292856,463.61,Concert Venue,entertainment,Purchase at Concert Venue,expense
+2025-09-10T15:09:33.292856,204.63,Gas Company,utilities,Purchase at Gas Company,expense
+2025-09-10T19:21:33.292856,9.804189061732,Spotify,subscription,Spotify monthly subscription,expense
+2025-09-10T20:52:33.292856,122.22,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-09-10T21:52:33.292856,246.26,Home Depot,shopping,Purchase at Home Depot,expense
+2025-09-11T08:45:33.292856,73.98,Lyft,transport,Purchase at Lyft,expense
+2025-09-12T17:27:33.292856,166.44,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-09-12T17:30:33.292856,9.55,Thai Express,restaurant,Purchase at Thai Express,expense
+2025-09-12T19:44:33.292856,488.85,Apple Store,shopping,Purchase at Apple Store,expense
+2025-09-13T01:57:33.292856,22.03,Pizza Hut,restaurant,Purchase at Pizza Hut,expense
+2025-09-13T03:15:33.292856,107.61,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-09-13T17:33:33.292856,300.36,Dentist,healthcare,Purchase at Dentist,expense
+2025-09-14T02:00:33.292856,392.7,Apple Store,shopping,Purchase at Apple Store,expense
+2025-09-14T04:02:33.292856,198.82,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-09-14T10:42:33.292856,493.63,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-09-14T11:26:33.292856,176.47,Walgreens,healthcare,Purchase at Walgreens,expense
+2025-09-14T11:43:33.292856,91.27,Water Company,utilities,Purchase at Water Company,expense
+2025-09-15T16:23:33.292856,739.49,Gas Company,utilities,Purchase at Gas Company,expense
+2025-09-15T18:14:33.292856,15.05,Starbucks,restaurant,Purchase at Starbucks,expense
+2025-09-16T06:41:33.292856,727.46,PG&E Electric,utilities,Purchase at PG&E Electric,expense
+2025-09-16T18:45:33.292856,79.47,Public Transit,transport,Purchase at Public Transit,expense
+2025-09-17T10:10:33.292856,76.81,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-09-18T05:50:33.292856,73.6,Disney Plus,subscription,Purchase at Disney Plus,expense
+2025-09-19T12:09:33.292856,131.46,PG&E Electric,utilities,Purchase at PG&E Electric,expense
+2025-09-19T12:25:33.292856,7.47,Disney Plus,subscription,Purchase at Disney Plus,expense
+2025-09-19T12:40:33.292856,22.44,Spotify,subscription,Purchase at Spotify,expense
+2025-09-19T14:07:33.292856,31.7,Public Transit,transport,Purchase at Public Transit,expense
+2025-09-19T23:08:33.292856,118.13,Safeway,grocery,Purchase at Safeway,expense
+2025-09-20T01:18:33.292856,200.06,Hulu,subscription,Purchase at Hulu,expense
+2025-09-20T08:35:33.292856,266.51,Home Depot,shopping,Purchase at Home Depot,expense
+2025-09-20T20:02:33.292856,142.17,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-09-21T06:05:33.292856,68.88,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-09-21T06:24:33.292856,162.85,Safeway,grocery,Purchase at Safeway,expense
+2025-09-22T02:12:33.292856,151.3,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-09-22T13:14:33.292856,164.01,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-09-23T08:26:33.292856,211.81,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-09-23T19:21:33.292856,4778.649599058943,Employer Inc,income,Monthly salary,income
+2025-09-23T20:09:33.292856,96.68,Amazon,shopping,Purchase at Amazon,expense
+2025-09-23T23:18:33.292856,191.06,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-09-24T02:04:33.292856,79.15,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-09-24T10:08:33.292856,34.03,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-09-24T12:58:33.292856,496.35,Dentist,healthcare,Purchase at Dentist,expense
+2025-09-24T16:30:33.292856,117.18,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-09-24T18:10:33.292856,58.22,Kroger,grocery,Purchase at Kroger,expense
+2025-09-26T03:56:33.292856,24.58,Pizza Hut,restaurant,Purchase at Pizza Hut,expense
+2025-09-26T13:34:33.292856,179.45,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-09-27T09:41:33.292856,31.85,Spotify,subscription,Purchase at Spotify,expense
+2025-09-27T11:29:33.292856,16.96,Adobe Creative,subscription,Purchase at Adobe Creative,expense
+2025-09-27T16:59:33.292856,176.2,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-09-28T09:00:33.292856,67.77,PG&E Electric,utilities,Purchase at PG&E Electric,expense
+2025-09-28T15:50:33.292856,93.4,Disney Plus,subscription,Purchase at Disney Plus,expense
+2025-09-28T18:59:33.292856,40.56,Starbucks,restaurant,Purchase at Starbucks,expense
+2025-09-29T14:16:33.292856,22.54,McDonalds,restaurant,Purchase at McDonalds,expense
+2025-09-30T12:32:33.292856,106.62,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-09-30T16:11:33.292856,76.79,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-10-01T04:59:33.292856,124.67,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-10-01T05:17:33.292856,144.78,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-10-02T06:57:33.292856,20.77,Amazon Prime,subscription,Purchase at Amazon Prime,expense
+2025-10-02T21:14:33.292856,142.23,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-10-02T22:04:33.292856,103.14,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-10-03T13:07:33.292856,139.94,Safeway,grocery,Purchase at Safeway,expense
+2025-10-03T13:29:33.292856,11.16,Pizza Hut,restaurant,Purchase at Pizza Hut,expense
+2025-10-03T18:53:33.292856,50.07,Uber,transport,Purchase at Uber,expense
+2025-10-03T20:51:33.292856,53.53,Spotify,subscription,Purchase at Spotify,expense
+2025-10-04T02:27:33.292856,285.0,Internet Provider,utilities,Purchase at Internet Provider,expense
+2025-10-05T15:15:33.292856,73.21,PlayStation Store,entertainment,Purchase at PlayStation Store,expense
+2025-10-05T19:13:33.292856,117.57,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-10-06T14:39:33.292856,53.51,Thai Express,restaurant,Purchase at Thai Express,expense
+2025-10-06T16:37:33.292856,289.78,Adobe Creative,subscription,Purchase at Adobe Creative,expense
+2025-10-06T18:43:33.292856,81.02,Amazon Prime,subscription,Purchase at Amazon Prime,expense
+2025-10-06T19:21:33.292856,4.947681672933976,GitHub Pro,subscription,GitHub Pro monthly subscription,expense
+2025-10-06T20:59:33.292856,134.11,Trader Joes,grocery,Purchase at Trader Joes,expense
+2025-10-07T19:21:33.292856,14.927354834515098,Amazon Prime,subscription,Amazon Prime monthly subscription,expense
+2025-10-07T19:21:33.292856,13.474860276525423,Hulu,subscription,Hulu monthly subscription,expense
+2025-10-07T19:21:33.292856,149.75511132570432,CrossFit Gym,fitness,CrossFit Gym monthly subscription,expense
+2025-10-08T03:30:33.292856,98.77,Disney Plus,subscription,Purchase at Disney Plus,expense
+2025-10-08T07:09:33.292856,95.14,Water Company,utilities,Purchase at Water Company,expense
+2025-10-08T19:21:33.292856,15.914018088134272,Netflix,subscription,Netflix monthly subscription,expense
+2025-10-08T19:21:33.292856,9.551526656771616,Spotify,subscription,Spotify monthly subscription,expense
+2025-10-08T19:21:33.292856,8.160343020561083,Disney Plus,subscription,Disney Plus monthly subscription,expense
+2025-10-08T19:21:33.292856,52.92595180140761,Adobe Creative,subscription,Adobe Creative monthly subscription,expense
+2025-10-08T19:21:33.292856,40.47651358886286,24 Hour Fitness,fitness,24 Hour Fitness monthly subscription,expense
+2025-10-08T19:21:33.292856,10.005744444619605,Planet Fitness,fitness,Planet Fitness monthly subscription,expense
+2025-10-08T19:52:33.292856,107.09,Whole Foods,grocery,Purchase at Whole Foods,expense
+2025-10-09T16:27:33.292856,89.89,Shell Gas Station,transport,Purchase at Shell Gas Station,expense
+2025-10-09T19:21:33.292856,88.58453003511279,Yoga Studio,fitness,Yoga Studio monthly subscription,expense
+2025-10-09T19:42:33.292856,40.75,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-10-09T20:47:33.292856,107.4,Kroger,grocery,Purchase at Kroger,expense
+2025-10-10T09:02:33.292856,107.18,Concert Venue,entertainment,Purchase at Concert Venue,expense
+2025-10-11T12:39:33.292856,36.69,Kroger,grocery,Purchase at Kroger,expense
+2025-10-12T05:35:33.292856,135.11,Concert Venue,entertainment,Purchase at Concert Venue,expense
+2025-10-12T10:03:33.292856,116.11,Walmart,shopping,Purchase at Walmart,expense
+2025-10-12T19:05:33.292856,115.62,Health Insurance,healthcare,Purchase at Health Insurance,expense
+2025-10-13T01:02:33.292856,76.55,Public Transit,transport,Purchase at Public Transit,expense
+2025-10-13T05:50:33.292856,325.28,Home Depot,shopping,Purchase at Home Depot,expense
+2025-10-13T10:15:33.292856,171.04,Home Depot,shopping,Purchase at Home Depot,expense
+2025-10-13T13:53:33.292856,360.58,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-10-13T15:06:33.292856,59.75,Subway,restaurant,Purchase at Subway,expense
+2025-10-14T12:12:33.292856,143.47,PlayStation Store,entertainment,Purchase at PlayStation Store,expense
+2025-10-14T17:49:33.292856,142.53,Target Grocery,grocery,Purchase at Target Grocery,expense
+2025-10-15T13:59:33.292856,69.46,Uber,transport,Purchase at Uber,expense
+2025-10-15T18:09:33.292856,20.34,Adobe Creative,subscription,Purchase at Adobe Creative,expense
+2025-10-16T14:52:33.292856,574.58,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-10-19T00:29:33.292856,187.05,PG&E Electric,utilities,Purchase at PG&E Electric,expense
+2025-10-19T10:16:33.292856,41.11,Thai Express,restaurant,Purchase at Thai Express,expense
+2025-10-20T16:39:33.292856,251.17,Water Company,utilities,Purchase at Water Company,expense
+2025-10-20T22:56:33.292856,33.93,Spotify,subscription,Purchase at Spotify,expense
+2025-10-21T01:57:33.292856,31.81,Starbucks,restaurant,Purchase at Starbucks,expense
+2025-10-21T11:01:33.292856,16.54,Public Transit,transport,Purchase at Public Transit,expense
+2025-10-21T13:24:33.292856,78.52,GitHub Pro,subscription,Purchase at GitHub Pro,expense
+2025-10-21T13:46:33.292856,46.07,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-10-23T08:45:33.292856,335.72,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-10-23T15:28:33.292856,36.52,Netflix,subscription,Purchase at Netflix,expense
+2025-10-23T19:21:33.292856,5284.16775953313,Employer Inc,income,Monthly salary,income
+2025-10-24T18:37:33.292856,64.36,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-10-24T22:41:33.292856,362.44,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-10-26T04:33:33.292856,480.27,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-10-26T13:23:33.292856,57.0,Hulu,subscription,Purchase at Hulu,expense
+2025-10-27T18:12:33.292856,155.46,Yoga Studio,fitness,Purchase at Yoga Studio,expense
+2025-10-27T19:36:33.292856,159.05,McDonalds,restaurant,Purchase at McDonalds,expense
+2025-10-28T06:17:33.292856,135.49,Movie Theater,entertainment,Purchase at Movie Theater,expense
+2025-10-28T11:24:33.292856,403.03,Amazon,shopping,Purchase at Amazon,expense
+2025-10-28T14:17:33.292856,85.27,Chevron,transport,Purchase at Chevron,expense
+2025-10-29T02:18:33.292856,476.42,Dentist,healthcare,Purchase at Dentist,expense
+2025-10-29T12:25:33.292856,38.28,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-10-29T15:11:33.292856,35.93,Disney Plus,subscription,Purchase at Disney Plus,expense
+2025-10-29T22:11:33.292856,137.29,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-10-30T11:18:33.292856,236.63,Doctor Visit,healthcare,Purchase at Doctor Visit,expense
+2025-10-30T18:41:33.292856,31.17,Steam Games,entertainment,Purchase at Steam Games,expense
+2025-10-30T19:19:33.292856,372.21,CVS Pharmacy,healthcare,Purchase at CVS Pharmacy,expense
+2025-10-31T08:04:33.292856,36.97,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-10-31T16:50:33.292856,169.68,Kroger,grocery,Purchase at Kroger,expense
+2025-11-01T10:07:33.292856,83.44,Spotify,subscription,Purchase at Spotify,expense
+2025-11-01T12:53:33.292856,450.96,Apple Store,shopping,Purchase at Apple Store,expense
+2025-11-01T21:03:33.292856,85.25,Dentist,healthcare,Purchase at Dentist,expense
+2025-11-03T16:50:33.292856,246.48,Amazon,shopping,Purchase at Amazon,expense
+2025-11-03T19:55:33.292856,112.02,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-11-04T15:13:33.292856,63.5,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-11-04T16:23:33.292856,109.83,Planet Fitness,fitness,Purchase at Planet Fitness,expense
+2025-11-04T19:40:33.292856,366.64,Health Insurance,healthcare,Purchase at Health Insurance,expense
+2025-11-05T15:03:33.292856,159.77,CrossFit Gym,fitness,Purchase at CrossFit Gym,expense
+2025-11-06T18:25:33.292856,54.07,Thai Express,restaurant,Purchase at Thai Express,expense
+2025-11-07T01:01:33.292856,285.08,Apple Store,shopping,Purchase at Apple Store,expense
+2025-11-07T05:39:33.292856,28.06,Chipotle,restaurant,Purchase at Chipotle,expense
+2025-11-07T20:22:33.292856,20.12,24 Hour Fitness,fitness,Purchase at 24 Hour Fitness,expense
+2025-11-08T03:51:33.292856,35.59,Public Transit,transport,Purchase at Public Transit,expense
+2025-11-08T12:56:33.292856,36.87,Subway,restaurant,Purchase at Subway,expense

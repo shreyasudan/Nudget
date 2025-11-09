@@ -9,6 +9,20 @@ export const api = axios.create({
   },
 });
 
+// Add a request interceptor to include the auth token
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export interface Transaction {
   id: number;
   date: string;
@@ -110,11 +124,11 @@ export const anomalyService = {
 
 export const goalService = {
   async create(goal: Omit<Goal, 'id' | 'current_amount' | 'is_active' | 'progress_percentage' | 'days_remaining'>) {
-    return api.post<Goal>('/api/goals', goal);
+    return api.post<Goal>('/api/goals/', goal);
   },
 
   async getAll(activeOnly = true) {
-    return api.get<Goal[]>('/api/goals', {
+    return api.get<Goal[]>('/api/goals/', {
       params: { active_only: activeOnly },
     });
   },
@@ -136,4 +150,92 @@ export const goalService = {
   async getProjection(id: number) {
     return api.get(`/api/goals/${id}/projection`);
   },
+};
+
+export interface Budget {
+  id: string;
+  user_id: string;
+  category?: string;
+  amount_monthly: number;
+  currency: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface BudgetUsage {
+  budget_id: string;
+  category?: string;
+  budgeted_amount: number;
+  spent_amount: number;
+  percent_used: number;
+  remaining_amount: number;
+  status?: string;
+  currency?: string;
+}
+
+export const budgetService = {
+  async create(budget: Omit<Budget, 'id' | 'user_id' | 'is_active' | 'created_at' | 'updated_at'>) {
+    return api.post<Budget>('/api/budgets/', budget);
+  },
+
+  async getAll(activeOnly = true) {
+    return api.get<Budget[]>('/api/budgets/', {
+      params: { active_only: activeOnly },
+    });
+  },
+
+  async getUsage(month?: string) {
+    return api.get<BudgetUsage[]>('/api/budgets/usage', {
+      params: { month },
+    });
+  },
+
+  async update(id: string, updates: Partial<Budget>) {
+    return api.put<Budget>(`/api/budgets/${id}`, updates);
+  },
+
+  async delete(id: string) {
+    return api.delete(`/api/budgets/${id}`);
+  },
+};
+
+export interface Alert {
+  id: string;
+  user_id: string;
+  type: 'GOAL_PROGRESS' | 'BUDGET_WARNING' | 'ANOMALY' | 'SUMMARY';
+  title: string;
+  description: string;
+  is_read: boolean;
+  metadata?: {
+    goal_id?: number;
+    goal_name?: string;
+    budget_id?: string;
+    category?: string;
+    current_amount?: number;
+    target_amount?: number;
+    budgeted_amount?: number;
+    spent_amount?: number;
+    overspend_amount?: number;
+    progress_percentage?: number;
+    percent_used?: number;
+    percent_of_usual?: number;
+  };
+  created_at: string;
+}
+
+export const alertService = {
+  async getAll(unreadOnly = false, limit = 20) {
+    return api.get<Alert[]>('/api/alerts/', {
+      params: { unread_only: unreadOnly, limit }
+    });
+  },
+
+  async markAsRead(ids: string[]) {
+    return api.post('/api/alerts/mark-read', { ids });
+  },
+
+  async generateAlerts() {
+    return api.post('/api/alerts/generate');
+  }
 };
