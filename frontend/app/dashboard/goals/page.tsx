@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import CreateGoalModal from '@/components/CreateGoalModal';
-import { Plus, DollarSign, Edit2, Trash2 } from 'lucide-react';
+import { DollarSign, Edit2, Trash2 } from 'lucide-react';
 import { goalService, Goal } from '@/lib/api';
 
 export default function GoalsPage() {
@@ -222,11 +222,8 @@ export default function GoalsPage() {
               })}
             </div>
           ) : (
-            <div className="text-center py-16 mt-8">
-              <div className="max-w-md mx-auto">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
-                  <Plus className="w-8 h-8 text-gray-400" />
-                </div>
+            <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
+              <div className="text-center">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">No goals yet</h3>
                 <p className="text-sm text-gray-500 mb-4">Create your first savings goal to start tracking your progress.</p>
                 <button

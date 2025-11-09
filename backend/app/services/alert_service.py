@@ -321,13 +321,17 @@ class AlertService:
         user_id: str
     ) -> Dict[str, List[Alert]]:
         """Generate all types of alerts for a user"""
+        from app.services.alert_generation_service import AlertGenerationService
+
         anomaly_alerts = await AlertService.generate_anomaly_alerts(db, user_id)
         budget_alerts = await AlertService.generate_budget_alerts(db, user_id)
         goal_alerts = await AlertService.generate_goal_alerts(db, user_id)
+        subscription_alerts = await AlertGenerationService.generate_subscription_alerts(db, user_id)
 
         return {
             "anomaly": anomaly_alerts,
             "budget": budget_alerts,
             "goal": goal_alerts,
-            "total": len(anomaly_alerts) + len(budget_alerts) + len(goal_alerts)
+            "subscription": subscription_alerts,
+            "total": len(anomaly_alerts) + len(budget_alerts) + len(goal_alerts) + len(subscription_alerts)
         }

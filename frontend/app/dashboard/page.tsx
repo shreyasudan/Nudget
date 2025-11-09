@@ -126,7 +126,7 @@ export default function Dashboard() {
               transition={{ duration: 0.4, delay: 0.5 }}
               className="h-full"
             >
-              <CategoryBreakdown categories={overview?.categories || {}} />
+              <CategoryBreakdown categories={overview?.current_month_categories || overview?.categories || {}} />
             </motion.div>
           </div>
 

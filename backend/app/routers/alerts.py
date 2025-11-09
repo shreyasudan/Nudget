@@ -61,7 +61,39 @@ async def generate_alerts(
             "anomaly_alerts": len(results["anomaly"]),
             "budget_alerts": len(results["budget"]),
             "goal_alerts": len(results["goal"]),
+            "subscription_alerts": len(results.get("subscription", [])),
             "total_alerts": results["total"]
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate alerts: {str(e)}")
+
+@router.post("/generate-subscription-alerts")
+async def generate_subscription_alerts(
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
+):
+    """Generate alerts for upcoming subscription payments and gray charges"""
+    try:
+        from app.services.alert_generation_service import AlertGenerationService
+        from app.services.subscription_detector import SubscriptionDetector
+
+        # First detect and update recurring charges
+        await SubscriptionDetector.detect_recurring_charges(db)
+        await SubscriptionDetector.mark_transactions_as_recurring(db)
+
+        # Generate subscription-specific alerts
+        alerts = await AlertGenerationService.generate_subscription_alerts(db, current_user.id)
+
+        # Get gray charges summary
+        gray_charges = await SubscriptionDetector.identify_gray_charges(db)
+
+        return {
+            "message": "Subscription alert generation completed",
+            "upcoming_payment_alerts": len([a for a in alerts if "SUBSCRIPTION_REMINDER" in str(a.type)]),
+            "gray_charge_alerts": len([a for a in alerts if "GRAY_CHARGE" in str(a.type)]),
+            "total_gray_charges_detected": len(gray_charges),
+            "potential_monthly_savings": sum(c['average_amount'] for c in gray_charges if c['frequency_days'] <= 31),
+            "total_alerts": len(alerts)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to generate subscription alerts: {str(e)}")

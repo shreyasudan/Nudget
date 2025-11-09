@@ -65,6 +65,7 @@ export interface SpendingOverview {
   total_expenses: number;
   net_savings: number;
   categories: Record<string, number>;
+  current_month_categories?: Record<string, number>;
   monthly_trend: Array<{
     month: string;
     income: number;
@@ -203,7 +204,7 @@ export const budgetService = {
 export interface Alert {
   id: string;
   user_id: string;
-  type: 'GOAL_PROGRESS' | 'BUDGET_WARNING' | 'ANOMALY' | 'SUMMARY';
+  type: 'GOAL_PROGRESS' | 'BUDGET_WARNING' | 'ANOMALY' | 'SUMMARY' | 'SUBSCRIPTION_REMINDER' | 'GRAY_CHARGE';
   title: string;
   description: string;
   is_read: boolean;

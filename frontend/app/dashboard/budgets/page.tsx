@@ -187,8 +187,8 @@ export default function BudgetsPage() {
               })}
             </div>
           ) : (
-            <div className="flex items-center justify-center py-16" style={{ marginTop: '0' }}>
-              <div className="text-center max-w-md">
+            <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
+              <div className="text-center">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">No budgets yet</h3>
                 <p className="text-sm text-gray-500 mb-4">Create your first budget to start tracking your spending by category.</p>
                 <button

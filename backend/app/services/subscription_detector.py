@@ -43,77 +43,87 @@ class SubscriptionDetector:
         return confidence, frequency_days
 
     @staticmethod
-    async def detect_recurring_charges(db: AsyncSession) -> List[RecurringCharge]:
-        result = await db.execute(
-            select(Transaction)
-            .where(Transaction.transaction_type == 'expense')
-            .order_by(Transaction.merchant, Transaction.date)
-        )
+    async def detect_recurring_charges(db: AsyncSession, user_id: str = None) -> List[RecurringCharge]:
+        query = select(Transaction).where(Transaction.transaction_type == 'expense')
+        if user_id:
+            query = query.where(Transaction.user_id == user_id)
+        query = query.order_by(Transaction.merchant, Transaction.date)
+
+        result = await db.execute(query)
         transactions = result.scalars().all()
 
-        merchant_transactions = defaultdict(list)
+        # Group by user and merchant
+        user_merchant_transactions = defaultdict(lambda: defaultdict(list))
         for trans in transactions:
-            merchant_transactions[trans.merchant].append(trans)
+            user_merchant_transactions[trans.user_id][trans.merchant].append(trans)
 
         recurring_charges = []
 
-        for merchant, trans_list in merchant_transactions.items():
-            if len(trans_list) < 2:
-                continue
+        for user_id, merchant_transactions in user_merchant_transactions.items():
+            for merchant, trans_list in merchant_transactions.items():
+                if len(trans_list) < 2:
+                    continue
 
-            dates = [t.date for t in trans_list]
-            amounts = [t.amount for t in trans_list]
+                dates = [t.date for t in trans_list]
+                amounts = [t.amount for t in trans_list]
 
-            confidence, frequency_days = SubscriptionDetector.calculate_frequency_score(dates)
+                confidence, frequency_days = SubscriptionDetector.calculate_frequency_score(dates)
 
-            if confidence < 0.6:
-                continue
+                if confidence < 0.6:
+                    continue
 
-            amount_variance = np.std(amounts) / np.mean(amounts) if np.mean(amounts) > 0 else 1
-            if amount_variance > 0.2:
-                confidence *= 0.8
+                amount_variance = np.std(amounts) / np.mean(amounts) if np.mean(amounts) > 0 else 1
+                if amount_variance > 0.2:
+                    confidence *= 0.8
 
-            recurring_charge = RecurringCharge(
-                merchant=merchant,
-                average_amount=float(np.mean(amounts)),
-                frequency_days=frequency_days,
-                last_charge_date=max(dates),
-                next_expected_date=max(dates) + timedelta(days=frequency_days),
-                category=trans_list[0].category,
-                is_active=True,
-                confidence_score=confidence
-            )
+                # Check for existing charge for this user and merchant
+                existing = await db.execute(
+                    select(RecurringCharge).where(
+                        and_(
+                            RecurringCharge.user_id == user_id,
+                            RecurringCharge.merchant == merchant
+                        )
+                    )
+                )
+                existing_charge = existing.scalar_one_or_none()
 
-            existing = await db.execute(
-                select(RecurringCharge).where(RecurringCharge.merchant == merchant)
-            )
-            existing_charge = existing.scalar_one_or_none()
-
-            if existing_charge:
-                existing_charge.average_amount = recurring_charge.average_amount
-                existing_charge.frequency_days = recurring_charge.frequency_days
-                existing_charge.last_charge_date = recurring_charge.last_charge_date
-                existing_charge.next_expected_date = recurring_charge.next_expected_date
-                existing_charge.confidence_score = recurring_charge.confidence_score
-            else:
-                db.add(recurring_charge)
-                recurring_charges.append(recurring_charge)
+                if existing_charge:
+                    existing_charge.average_amount = float(np.mean(amounts))
+                    existing_charge.frequency_days = frequency_days
+                    existing_charge.last_charge_date = max(dates)
+                    existing_charge.next_expected_date = max(dates) + timedelta(days=frequency_days)
+                    existing_charge.confidence_score = confidence
+                else:
+                    recurring_charge = RecurringCharge(
+                        user_id=user_id,
+                        merchant=merchant,
+                        average_amount=float(np.mean(amounts)),
+                        frequency_days=frequency_days,
+                        last_charge_date=max(dates),
+                        next_expected_date=max(dates) + timedelta(days=frequency_days),
+                        category=trans_list[0].category,
+                        is_active=True,
+                        confidence_score=confidence
+                    )
+                    db.add(recurring_charge)
+                    recurring_charges.append(recurring_charge)
 
         await db.commit()
         return recurring_charges
 
     @staticmethod
-    async def get_all_recurring(db: AsyncSession) -> List[RecurringCharge]:
-        result = await db.execute(
-            select(RecurringCharge)
-            .where(RecurringCharge.is_active == True)
-            .order_by(RecurringCharge.confidence_score.desc())
-        )
+    async def get_all_recurring(db: AsyncSession, user_id: str = None) -> List[RecurringCharge]:
+        query = select(RecurringCharge).where(RecurringCharge.is_active == True)
+        if user_id:
+            query = query.where(RecurringCharge.user_id == user_id)
+        query = query.order_by(RecurringCharge.confidence_score.desc())
+
+        result = await db.execute(query)
         return result.scalars().all()
 
     @staticmethod
-    async def identify_gray_charges(db: AsyncSession) -> List[Dict[str, Any]]:
-        recurring = await SubscriptionDetector.get_all_recurring(db)
+    async def identify_gray_charges(db: AsyncSession, user_id: str = None) -> List[Dict[str, Any]]:
+        recurring = await SubscriptionDetector.get_all_recurring(db, user_id)
 
         gray_charges = []
         suspicious_keywords = ['trial', 'premium', 'pro', 'plus', 'subscription',

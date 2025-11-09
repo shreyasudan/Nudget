@@ -64,6 +64,10 @@ export default function AlertsPage() {
         return <AlertTriangle className="w-5 h-5" />;
       case 'ANOMALY':
         return <TrendingUp className="w-5 h-5" />;
+      case 'SUBSCRIPTION_REMINDER':
+        return <RotateCw className="w-5 h-5" />;
+      case 'GRAY_CHARGE':
+        return <DollarSign className="w-5 h-5" />;
       default:
         return <Bell className="w-5 h-5" />;
     }
@@ -77,6 +81,10 @@ export default function AlertsPage() {
         return 'text-red-600 bg-red-50 border-red-200';
       case 'ANOMALY':
         return 'text-yellow-600 bg-yellow-50 border-yellow-200';
+      case 'SUBSCRIPTION_REMINDER':
+        return 'text-purple-600 bg-purple-50 border-purple-200';
+      case 'GRAY_CHARGE':
+        return 'text-orange-600 bg-orange-50 border-orange-200';
       default:
         return 'text-blue-600 bg-blue-50 border-blue-200';
     }
@@ -300,9 +308,11 @@ export default function AlertsPage() {
               })}
             </div>
           ) : (
-            <div className="flex items-center justify-center py-16" style={{ marginTop: '0' }}>
-              <div className="text-center max-w-md">
-                <Bell className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
+              <div className="text-center w-full">
+                <div className="flex justify-center mb-4">
+                  <Bell className="w-12 h-12 text-gray-400" />
+                </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {filter === 'unread' ? 'No unread alerts' : 'No alerts yet'}
                 </h3>

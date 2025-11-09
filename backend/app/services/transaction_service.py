@@ -113,6 +113,16 @@ class TransactionService:
 
     @staticmethod
     async def get_spending_overview(db: AsyncSession, user_id: str) -> Dict[str, Any]:
+        from datetime import datetime
+
+        # Get current month boundaries
+        now = datetime.utcnow()
+        month_start = datetime(now.year, now.month, 1)
+        if now.month == 12:
+            month_end = datetime(now.year + 1, 1, 1)
+        else:
+            month_end = datetime(now.year, now.month + 1, 1)
+
         income_result = await db.execute(
             select(func.sum(Transaction.amount))
             .where(and_(
@@ -131,6 +141,7 @@ class TransactionService:
         )
         total_expenses = expense_result.scalar() or 0.0
 
+        # Get all-time categories for compatibility
         category_result = await db.execute(
             select(
                 Transaction.category,
@@ -143,6 +154,22 @@ class TransactionService:
             .group_by(Transaction.category)
         )
         categories = {row.category: float(row.total) for row in category_result}
+
+        # Get current month categories
+        current_month_result = await db.execute(
+            select(
+                Transaction.category,
+                func.sum(Transaction.amount).label('total')
+            )
+            .where(and_(
+                Transaction.user_id == user_id,
+                Transaction.transaction_type == 'expense',
+                Transaction.date >= month_start,
+                Transaction.date < month_end
+            ))
+            .group_by(Transaction.category)
+        )
+        current_month_categories = {row.category: float(row.total) for row in current_month_result}
 
         monthly_result = await db.execute(
             select(
@@ -170,5 +197,6 @@ class TransactionService:
             'total_expenses': total_expenses,
             'net_savings': total_income - total_expenses,
             'categories': categories,
+            'current_month_categories': current_month_categories,
             'monthly_trend': list(monthly_data.values())
         }

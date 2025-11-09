@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -17,6 +17,7 @@ import {
   Bell
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { alertService } from '@/lib/api';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -26,11 +27,35 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname();
   const { user, logout } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [unreadAlertCount, setUnreadAlertCount] = useState(0);
+
+  const fetchUnreadCount = async () => {
+    try {
+      const response = await alertService.getAll(true, 100);
+      setUnreadAlertCount(response.data.length);
+    } catch (error) {
+      console.error('Failed to fetch unread alerts:', error);
+    }
+  };
+
+  // Fetch unread alert count
+  useEffect(() => {
+    fetchUnreadCount();
+    // Refresh count every 30 seconds
+    const interval = setInterval(fetchUnreadCount, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Refresh count when pathname changes (especially when navigating to/from alerts)
+  useEffect(() => {
+    fetchUnreadCount();
+  }, [pathname]);
 
   const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: Home },
     { href: '/dashboard/goals', label: 'Goals', icon: Target },
     { href: '/dashboard/budgets', label: 'Budgets', icon: CreditCard },
+    { href: '/dashboard/subscriptions', label: 'Subscriptions', icon: Receipt },
     { href: '/dashboard/alerts', label: 'Recent Alerts', icon: Bell },
     { href: '/dashboard/settings', label: 'Settings', icon: Settings },
   ];
@@ -79,14 +104,21 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   <li key={item.href} style={{ marginBottom: index < navItems.length - 1 ? '12px' : '0' }}>
                     <Link
                       href={item.href}
-                      className={`flex items-center gap-5 py-3 rounded-lg transition-all duration-200 ${
+                      className={`flex items-center gap-5 py-3 rounded-lg transition-all duration-200 relative ${
                         active
                           ? 'bg-[#E97451]/10 text-[#E97451] font-medium'
                           : 'text-[#2C1810] hover:bg-[#E97451]/5 hover:text-[#E97451]'
                       }`}
                       style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", fontSize: '15px', letterSpacing: '0.01em', paddingLeft: '20px', paddingRight: '16px' }}
                     >
-                      <Icon className="w-5 h-5 flex-shrink-0" />
+                      <div className="relative">
+                        <Icon className="w-5 h-5 flex-shrink-0" />
+                        {item.icon === Bell && unreadAlertCount > 0 && (
+                          <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
+                            {unreadAlertCount > 9 ? '9+' : unreadAlertCount}
+                          </div>
+                        )}
+                      </div>
                       <span className="leading-relaxed">{item.label}</span>
                     </Link>
                   </li>

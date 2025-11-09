@@ -37,7 +37,7 @@ export default function GoalTracker() {
     <Card className="h-full flex flex-col bg-white" style={{ overflow: 'visible' }}>
       <CardHeader className="bg-white" style={{ padding: '24px 36px 8px 36px', overflow: 'visible' }}>
         <CardTitle className="flex items-center justify-between text-lg text-[#2C1810] font-normal" style={{ whiteSpace: 'nowrap', overflow: 'visible', width: '100%' }}>
-          <span>Goals / Budgets</span>
+          <span>Goals</span>
           <button
             onClick={() => setShowAddModal(true)}
             className="p-1.5 rounded-md hover:bg-gray-100 transition-colors"

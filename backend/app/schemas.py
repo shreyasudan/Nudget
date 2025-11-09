@@ -138,6 +138,7 @@ class SpendingOverview(BaseModel):
     total_expenses: float
     net_savings: float
     categories: Dict[str, float]
+    current_month_categories: Dict[str, float]
     monthly_trend: List[Dict[str, Any]]
 
 class AnomalyAlert(BaseModel):
@@ -190,6 +191,8 @@ class AlertType(str, Enum):
     BUDGET_WARNING = "BUDGET_WARNING"
     GOAL_PROGRESS = "GOAL_PROGRESS"
     SUMMARY = "SUMMARY"
+    SUBSCRIPTION_REMINDER = "SUBSCRIPTION_REMINDER"
+    GRAY_CHARGE = "GRAY_CHARGE"
 
 class AlertBase(BaseModel):
     type: AlertType

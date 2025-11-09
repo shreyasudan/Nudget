@@ -3,8 +3,9 @@ from datetime import datetime, timedelta
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, and_, func, or_
 import json
-from app.models import Alert, Goal, Budget, Transaction, User
+from app.models import Alert, Goal, Budget, Transaction, User, RecurringCharge
 from app.schemas import AlertType
+from app.services.subscription_detector import SubscriptionDetector
 
 class AlertGenerationService:
     @staticmethod
@@ -16,41 +17,22 @@ class AlertGenerationService:
         description: str,
         metadata: Optional[Dict[str, Any]] = None
     ) -> Optional[Alert]:
-        """Create an alert if a similar one doesn't already exist for today"""
+        """Create an alert if a similar unread one doesn't already exist"""
 
-        # Check for duplicate alert (same type, user, and day)
-        today_start = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
-
-        # Build query to check for existing similar alert
+        # Check for duplicate unread alert (same type, user, and title)
+        # Don't create duplicate if there's already an unread alert with same title
         existing_query = select(Alert).where(
             and_(
                 Alert.user_id == user_id,
                 Alert.type == alert_type,
-                Alert.created_at >= today_start
+                Alert.title == title,  # Same title means same alert
+                Alert.is_read == False  # Only check unread alerts
             )
         )
 
-        # Add additional checks based on metadata to prevent exact duplicates
-        if metadata:
-            if 'goal_id' in metadata:
-                # For goal alerts, check if we already have an alert for this goal today
-                existing_query = existing_query.where(
-                    Alert.metadata_json.like(f'%"goal_id": "{metadata["goal_id"]}"%')
-                )
-            elif 'budget_id' in metadata:
-                # For budget alerts, check if we already have an alert for this budget today
-                existing_query = existing_query.where(
-                    Alert.metadata_json.like(f'%"budget_id": "{metadata["budget_id"]}"%')
-                )
-            elif 'category' in metadata:
-                # For anomaly alerts, check if we already have an alert for this category today
-                existing_query = existing_query.where(
-                    Alert.metadata_json.like(f'%"category": "{metadata["category"]}"%')
-                )
-
         result = await db.execute(existing_query)
         if result.scalar():
-            return None  # Alert already exists
+            return None  # Alert already exists and is unread
 
         # Create new alert
         alert = Alert(
@@ -71,7 +53,8 @@ class AlertGenerationService:
         db: AsyncSession,
         user_id: str
     ) -> List[Alert]:
-        """Generate alerts for goals that are 70% or more complete"""
+        """Generate alerts for goals that are 70% or more complete with completion forecasting"""
+        from app.services.goal_service import GoalService
 
         created_alerts = []
 
@@ -97,6 +80,28 @@ class AlertGenerationService:
                 progress_percent = int(progress * 100)
                 remaining = goal.target_amount - goal.current_amount
 
+                # Calculate projected completion date
+                projected_date = await GoalService.project_goal_completion(db, goal, user_id)
+
+                if projected_date:
+                    days_to_completion = (projected_date - datetime.utcnow()).days
+                    forecast_message = (
+                        f" Based on your saving patterns, you're on track to reach this goal in "
+                        f"approximately {days_to_completion} days ({projected_date.strftime('%B %d, %Y')}). "
+                        f"Keep going!"
+                    )
+                else:
+                    # Calculate how much they need to save per month
+                    days_until_deadline = (goal.deadline - datetime.utcnow()).days
+                    if days_until_deadline > 0:
+                        monthly_needed = (remaining / days_until_deadline) * 30
+                        forecast_message = (
+                            f" To meet your deadline, you'll need to save approximately "
+                            f"${monthly_needed:.2f} per month."
+                        )
+                    else:
+                        forecast_message = " Your deadline has passed, but don't give up!"
+
                 alert = await AlertGenerationService.create_alert_if_not_exists(
                     db,
                     user_id=user_id,
@@ -104,14 +109,15 @@ class AlertGenerationService:
                     title=f"Goal Progress: {goal.name}",
                     description=(
                         f"Great progress! You're {progress_percent}% of the way to your "
-                        f"{goal.name} goal. Only ${remaining:.2f} left to save!"
+                        f"{goal.name} goal. Only ${remaining:.2f} left to save!{forecast_message}"
                     ),
                     metadata={
                         "goal_id": goal.id,
                         "goal_name": goal.name,
                         "current_amount": goal.current_amount,
                         "target_amount": goal.target_amount,
-                        "progress_percentage": progress_percent
+                        "progress_percentage": progress_percent,
+                        "projected_completion_date": projected_date.isoformat() if projected_date else None
                     }
                 )
 
@@ -149,7 +155,7 @@ class AlertGenerationService:
         user_id: str,
         month: Optional[datetime] = None
     ) -> List[Alert]:
-        """Generate alerts for budgets that have been exceeded this month"""
+        """Generate alerts for budgets that are 80% spent or exceeded"""
 
         created_alerts = []
 
@@ -163,6 +169,11 @@ class AlertGenerationService:
             month_end = month.replace(year=month.year + 1, month=1, day=1) - timedelta(seconds=1)
         else:
             month_end = month.replace(month=month.month + 1, day=1) - timedelta(seconds=1)
+
+        # Calculate how far through the month we are
+        days_in_month = (month_end - month_start).days + 1
+        days_elapsed = (datetime.utcnow() - month_start).days + 1
+        month_progress_percent = (days_elapsed / days_in_month) * 100
 
         # Get all active budgets for the user
         budgets_query = select(Budget).where(
@@ -201,11 +212,14 @@ class AlertGenerationService:
             result = await db.execute(spending_query)
             spent_amount = result.scalar() or 0.0
 
+            # Calculate budget usage percentage
+            budget_usage_percent = (spent_amount / budget.amount_monthly * 100) if budget.amount_monthly > 0 else 0
+            category_name = budget.category or "Overall"
+
             # Check if budget is exceeded
             if spent_amount > budget.amount_monthly:
                 overspend = spent_amount - budget.amount_monthly
                 percent_over = int((spent_amount / budget.amount_monthly - 1) * 100)
-                category_name = budget.category or "Overall"
 
                 alert = await AlertGenerationService.create_alert_if_not_exists(
                     db,
@@ -223,6 +237,40 @@ class AlertGenerationService:
                         "budgeted_amount": budget.amount_monthly,
                         "spent_amount": spent_amount,
                         "overspend_amount": overspend,
+                        "severity": "high",
+                        "month": month.strftime("%Y-%m")
+                    }
+                )
+
+                if alert:
+                    created_alerts.append(alert)
+
+            # Check if budget is 80% spent and we're only halfway through the month or less
+            elif budget_usage_percent >= 80 and month_progress_percent <= 60:
+                remaining = budget.amount_monthly - spent_amount
+                days_left = days_in_month - days_elapsed
+                daily_budget_remaining = remaining / days_left if days_left > 0 else 0
+
+                alert = await AlertGenerationService.create_alert_if_not_exists(
+                    db,
+                    user_id=user_id,
+                    alert_type="BUDGET_WARNING",
+                    title=f"Budget Alert: {category_name}",
+                    description=(
+                        f"Careful! You've spent ${spent_amount:.2f} ({int(budget_usage_percent)}%) "
+                        f"of your ${budget.amount_monthly:.2f} {category_name} budget, "
+                        f"but we're only {int(month_progress_percent)}% through the month. "
+                        f"You have ${remaining:.2f} left for the next {days_left} days "
+                        f"(about ${daily_budget_remaining:.2f}/day)."
+                    ),
+                    metadata={
+                        "budget_id": budget.id,
+                        "category": budget.category,
+                        "budgeted_amount": budget.amount_monthly,
+                        "spent_amount": spent_amount,
+                        "budget_usage_percent": budget_usage_percent,
+                        "month_progress_percent": month_progress_percent,
+                        "severity": "medium",
                         "month": month.strftime("%Y-%m")
                     }
                 )
@@ -350,6 +398,94 @@ class AlertGenerationService:
         return created_alerts
 
     @staticmethod
+    async def generate_subscription_alerts(
+        db: AsyncSession,
+        user_id: str
+    ) -> List[Alert]:
+        """Generate alerts for upcoming subscription payments and gray charges"""
+
+        created_alerts = []
+        now = datetime.utcnow()
+
+        # Get all recurring charges
+        recurring_charges = await SubscriptionDetector.get_all_recurring(db)
+
+        # Filter charges for this user (based on transactions)
+        user_transactions = await db.execute(
+            select(Transaction.merchant).distinct().where(
+                Transaction.user_id == user_id
+            )
+        )
+        user_merchants = set(user_transactions.scalars().all())
+
+        # Check for upcoming payments (within 3 days)
+        for charge in recurring_charges:
+            if charge.merchant not in user_merchants:
+                continue
+
+            days_until_charge = (charge.next_expected_date - now).days
+
+            # Alert for upcoming payments (within 3 days)
+            if 0 <= days_until_charge <= 3:
+                alert = await AlertGenerationService.create_alert_if_not_exists(
+                    db,
+                    user_id=user_id,
+                    alert_type="SUBSCRIPTION_REMINDER",
+                    title=f"Upcoming Payment: {charge.merchant}",
+                    description=(
+                        f"You have a recurring payment of ${charge.average_amount:.2f} "
+                        f"from {charge.merchant} coming up in {days_until_charge} day(s). "
+                        f"Expected on {charge.next_expected_date.strftime('%B %d, %Y')}."
+                    ),
+                    metadata={
+                        "merchant": charge.merchant,
+                        "amount": charge.average_amount,
+                        "next_charge_date": charge.next_expected_date.isoformat(),
+                        "frequency_days": charge.frequency_days,
+                        "confidence_score": charge.confidence_score
+                    }
+                )
+
+                if alert:
+                    created_alerts.append(alert)
+
+        # Generate gray charge alerts
+        gray_charges = await SubscriptionDetector.identify_gray_charges(db)
+
+        for gray_charge in gray_charges:
+            if gray_charge['merchant'] not in user_merchants:
+                continue
+
+            # Only alert for high-confidence gray charges
+            if gray_charge['confidence_score'] > 0.7:
+                reasons_text = ". ".join(gray_charge['reasons']) if gray_charge['reasons'] else "Potentially forgotten subscription"
+
+                alert = await AlertGenerationService.create_alert_if_not_exists(
+                    db,
+                    user_id=user_id,
+                    alert_type="GRAY_CHARGE",
+                    title=f"Review Subscription: {gray_charge['merchant']}",
+                    description=(
+                        f"You have a recurring charge of ${gray_charge['average_amount']:.2f} "
+                        f"from {gray_charge['merchant']} every {gray_charge['frequency_days']} days. "
+                        f"{reasons_text}. Consider reviewing if you still need this subscription."
+                    ),
+                    metadata={
+                        "merchant": gray_charge['merchant'],
+                        "amount": gray_charge['average_amount'],
+                        "frequency_days": gray_charge['frequency_days'],
+                        "reasons": gray_charge['reasons'],
+                        "confidence_score": gray_charge['confidence_score'],
+                        "last_charge_date": gray_charge['last_charge_date'].isoformat() if gray_charge['last_charge_date'] else None
+                    }
+                )
+
+                if alert:
+                    created_alerts.append(alert)
+
+        return created_alerts
+
+    @staticmethod
     async def generate_all_alerts_for_user(
         db: AsyncSession,
         user_id: str,
@@ -364,10 +500,12 @@ class AlertGenerationService:
         goal_alerts = await AlertGenerationService.generate_goal_progress_alerts(db, user_id)
         budget_alerts = await AlertGenerationService.generate_budget_overspending_alerts(db, user_id, month)
         anomaly_alerts = await AlertGenerationService.generate_anomaly_alerts(db, user_id, month)
+        subscription_alerts = await AlertGenerationService.generate_subscription_alerts(db, user_id)
 
         return {
             "goal_progress": goal_alerts,
             "budget_overspending": budget_alerts,
             "anomalies": anomaly_alerts,
-            "total": len(goal_alerts) + len(budget_alerts) + len(anomaly_alerts)
+            "subscriptions": subscription_alerts,
+            "total": len(goal_alerts) + len(budget_alerts) + len(anomaly_alerts) + len(subscription_alerts)
         }
