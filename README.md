@@ -1,195 +1,251 @@
-# Nudget - Smart Financial Coach
+# Nudget - Smart Personal Finance for the Next Generation
 
-A minimal yet effective financial management application with **multi-user authentication** that helps users gain insights into their personal spending, detect subscriptions and anomalies, and set savings goals.
+## Description
 
-## Features
+Nudget is a comprehensive personal finance management platform designed specifically for young adults, students, and freelancers navigating the complexities of modern financial life. Unlike traditional budgeting apps that assume stable incomes and predictable expenses, Nudget embraces the reality of variable income, subscription proliferation, and the unique financial challenges faced by the gig economy generation.
 
-### Core Functionality
-- **User Authentication**: Secure registration/login with JWT tokens and user data isolation
-- **Transaction Management**: Upload and analyze financial transactions via CSV/JSON
-- **Spending Overview Dashboard**: Interactive visualizations of income, expenses, and savings
-- **Subscription Detection**: Automatically identifies recurring charges and potential "gray charges"
-- **Anomaly Detection**: ML-powered detection of unusual spending patterns
-- **Goal Tracking**: Set and monitor progress toward financial goals
-- **Security-First Design**: Password hashing, JWT tokens, user isolation, input validation
+Our mission is to make financial wellness accessible and actionable for everyone, regardless of their financial expertise or income stability. Nudget transforms overwhelming financial data into clear, actionable insights that help users build sustainable financial habits.
 
-### Technical Highlights
-- **Backend**: FastAPI with async SQLAlchemy, automatic API documentation
-- **Frontend**: Next.js 14 with TypeScript, Tailwind CSS, and Recharts
-- **ML Models**: Isolation Forest for anomaly detection, statistical analysis for patterns
-- **Real-time Updates**: Automatic detection runs on data upload
+### Who is Nudget for?
+- **Young Adults & Students** looking to build good financial habits early
+- **Freelancers & Gig Workers** managing variable income and irregular expenses
+- **Anyone** seeking to understand their spending patterns and find real savings opportunities
 
-## Demo Account
+### What makes Nudget different?
+- **Built for Variable Income:** Handles irregular payment patterns with ease
+- **Subscription Intelligence:** Automatically detects and flags forgotten subscriptions
+- **Proactive Guidance:** Smart alerts that prevent problems, not just report them
+- **Privacy-First:** Your financial data stays yours - no selling to third parties
 
-For quick testing, use the demo account:
-- **Email**: demo@nudget.com
-- **Password**: demo1234
+## Core Capabilities
 
-Or create your own account through the registration page.
+### 📊 **Intelligent Financial Dashboard**
+- Real-time overview of income, expenses, and savings
+- Interactive spending breakdowns with drill-down capabilities
+- Monthly trend analysis adapted for variable income patterns
+- Current month focus for relevant, actionable insights
 
-## Quick Start
+### 🔍 **Automatic Subscription Detection**
+- Identifies recurring charges with 60%+ confidence scoring
+- Discovers "gray charges" - forgotten subscriptions costing you monthly
+- Tracks upcoming payments and renewal dates
+- Calculates total subscription spend and potential savings
+
+### 🎯 **Smart Goal Setting & Tracking**
+- Create financial goals with target amounts and deadlines
+- AI-powered completion date predictions based on saving patterns
+- Progress celebrations and motivational alerts at milestones
+- Personalized savings recommendations to meet targets
+
+### 💰 **Adaptive Budget Management**
+- Category-specific and overall spending limits
+- Early warning system when spending too fast (80% at mid-month)
+- Real-time tracking against budget targets
+- Daily spending limit calculations for budget adherence
+
+### 🚨 **Proactive Alert System**
+- **Goal Progress:** Encouragement and projections when nearing targets
+- **Budget Warnings:** Early alerts to prevent overspending
+- **Anomaly Detection:** ML-powered unusual transaction identification
+- **Subscription Reminders:** Never miss expected payments
+- **Gray Charge Alerts:** Notifications about potentially forgotten services
+
+### 🤖 **Advanced Anomaly Detection**
+- Dual approach: Statistical analysis + Machine Learning
+- Isolation Forest algorithm for pattern recognition
+- Z-score calculations for statistical outliers
+- Contextual analysis by merchant and category
+
+### 📁 **Flexible Data Import**
+- CSV and JSON file upload support
+- Automatic transaction categorization
+- Bulk import from bank statements
+- Historical data analysis up to years back
+
+### 🔐 **Secure Authentication**
+- JWT token-based authentication
+- Encrypted password storage
+- Protected API endpoints
+- Secure session management
+
+## How to Run
 
 ### Prerequisites
-- Python 3.9+
-- Node.js 18+
-- npm or yarn
+- Python 3.12 or higher
+- Node.js 18 or higher
+- npm or yarn package manager
 
 ### Backend Setup
 
-1. Navigate to backend directory:
+1. **Navigate to the backend directory:**
 ```bash
 cd backend
 ```
 
-2. Create virtual environment:
+2. **Create and activate a virtual environment:**
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Install dependencies:
+3. **Install dependencies:**
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Set up environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your configuration
+4. **Set up environment variables:**
+Create a `.env` file in the backend directory:
+```env
+SECRET_KEY=your-secret-key-here-change-in-production
+DATABASE_URL=sqlite:///./nudget.db
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
 
-5. Run the backend server:
+5. **Initialize the database:**
 ```bash
-uvicorn app.main:app --reload --port 8000
+python -m app.database
 ```
 
-The API will be available at `http://localhost:8000`
-API documentation: `http://localhost:8000/docs`
+6. **Run the backend server:**
+```bash
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The backend API will be available at `http://localhost:8000`
+API documentation is available at `http://localhost:8000/docs`
 
 ### Frontend Setup
 
-1. Navigate to frontend directory:
+1. **Navigate to the frontend directory:**
 ```bash
 cd frontend
 ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 ```bash
 npm install
+# or
+yarn install
 ```
 
-3. Run the development server:
+3. **Set up environment variables:**
+Create a `.env.local` file in the frontend directory:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+4. **Run the development server:**
 ```bash
+npm run dev
+# or
+yarn dev
+```
+
+The frontend application will be available at `http://localhost:3000`
+
+### Demo Account
+
+For testing purposes, you can use the pre-configured demo account:
+
+**Email:** alex.demo@nudget.app
+**Password:** Demo123!
+
+This demo account includes:
+- 6 months of realistic transaction history
+- Variable freelance income patterns
+- Multiple subscriptions (including hidden ones to discover)
+- Typical young adult spending patterns
+
+To create the demo data, run from the backend directory:
+```bash
+python create_demo_data.py
+```
+
+### Quick Start (Both Services)
+
+For convenience, you can start both backend and frontend simultaneously:
+
+**Terminal 1 (Backend):**
+```bash
+cd backend
+source venv/bin/activate
+uvicorn app.main:app --reload
+```
+
+**Terminal 2 (Frontend):**
+```bash
+cd frontend
 npm run dev
 ```
 
-The application will be available at `http://localhost:3000`
+### Troubleshooting
 
-### Create Demo User (Optional)
+**Backend Issues:**
+- Ensure Python 3.12+ is installed: `python --version`
+- Check all dependencies are installed: `pip list`
+- Verify database exists: Check for `nudget.db` in backend directory
+- Port 8000 in use: Change port with `--port 8001`
 
-To create a demo user with sample data:
-```bash
-cd backend
-python create_demo_user.py
-```
+**Frontend Issues:**
+- Clear Next.js cache: `rm -rf .next`
+- Reinstall dependencies: `rm -rf node_modules && npm install`
+- Check Node version: `node --version` (should be 18+)
+- Port 3000 in use: The app will automatically try 3001
 
-This creates:
-- Demo user account (email: demo@nudget.com, password: demo1234)
-- 500+ sample transactions with realistic patterns
-- Pre-detected subscriptions and anomalies
+**Database Issues:**
+- Reset database: Delete `nudget.db` and restart backend
+- Create fresh demo data: `python create_demo_data.py`
 
-## Testing with Sample Data
+## Tech Stack
 
-1. Generate sample transaction data:
-```bash
-cd backend
-python -m app.utils.data_generator
-```
+### Backend
+- **FastAPI** - Modern, fast web framework for building APIs
+- **SQLAlchemy** - SQL toolkit and ORM
+- **SQLite** - Lightweight, serverless database
+- **Scikit-learn** - Machine learning for anomaly detection
+- **Python-JOSE** - JWT token implementation
+- **Pandas & NumPy** - Data analysis and processing
 
-This creates `sample_transactions.csv` and `sample_transactions.json` files.
+### Frontend
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **Recharts** - Composable charting library
+- **Axios** - HTTP client for API calls
+- **Lucide React** - Beautiful icon library
 
-2. Upload data through the UI:
-   - Click "Upload Transactions" in the dashboard
-   - Select the generated CSV or JSON file
-   - The system will automatically:
-     - Import transactions
-     - Detect subscriptions
-     - Identify anomalies
-     - Update spending overview
-
-## API Endpoints
-
-### Transactions
-- `POST /api/transactions/upload` - Upload transaction file
-- `GET /api/transactions` - List transactions
-- `GET /api/transactions/overview` - Spending overview
-
-### Subscriptions
-- `POST /api/subscriptions/detect` - Run detection
-- `GET /api/subscriptions` - List recurring charges
-- `GET /api/subscriptions/gray-charges` - Identify forgotten subscriptions
-
-### Anomalies
-- `POST /api/anomalies/detect` - Run anomaly detection
-- `GET /api/anomalies/summary` - Get anomaly summary
-
-### Goals
-- `POST /api/goals` - Create goal
-- `GET /api/goals` - List goals
-- `PUT /api/goals/{id}` - Update goal
-- `POST /api/goals/{id}/progress` - Add progress
-
-## Security Features
-
-- Input validation on all endpoints
-- Environment-based configuration
-- CORS protection
-- SQL injection prevention via ORM
-- Prepared for encryption implementation
-- Secure file upload handling
-
-## Architecture
+## Project Structure
 
 ```
-nudget/
+Nudget/
 ├── backend/
 │   ├── app/
-│   │   ├── models.py          # SQLAlchemy models
-│   │   ├── schemas.py         # Pydantic schemas
-│   │   ├── routers/           # API endpoints
-│   │   ├── services/          # Business logic
-│   │   └── utils/             # Utilities
-│   └── requirements.txt
+│   │   ├── models.py         # Database models
+│   │   ├── schemas.py        # Pydantic schemas
+│   │   ├── auth.py           # Authentication logic
+│   │   ├── database.py       # Database configuration
+│   │   ├── main.py           # FastAPI application
+│   │   ├── routers/          # API endpoints
+│   │   └── services/         # Business logic
+│   └── requirements.txt      # Python dependencies
 ├── frontend/
-│   ├── app/                   # Next.js pages
-│   ├── components/            # React components
-│   ├── lib/                   # API client
-│   └── package.json
-└── README.md
+│   ├── app/                  # Next.js app router
+│   ├── components/           # React components
+│   ├── lib/                  # Utilities and API client
+│   ├── public/              # Static assets
+│   └── package.json         # Node dependencies
+└── README.md                # This file
 ```
-
-## Development
-
-### Running Tests (Backend)
-```bash
-cd backend
-pytest
-```
-
-### Code Quality
-- Backend: Type hints, async/await patterns
-- Frontend: TypeScript, ESLint
-- Modular architecture for maintainability
-
-## Future Enhancements
-
-- Real banking API integration
-- Multi-user authentication
-- Advanced ML insights
-- Mobile app support
-- Budget recommendations
-- Investment tracking
 
 ## License
 
-MIT
+This project is proprietary software. All rights reserved.
+
+## Contact
+
+For questions, suggestions, or support, please contact the development team.
+
+---
+
+Built with ❤️ for the next generation of financially conscious individuals.
