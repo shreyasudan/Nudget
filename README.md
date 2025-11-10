@@ -68,6 +68,12 @@ Our mission is to make financial wellness accessible and actionable for everyone
 - Protected API endpoints
 - Secure session management
 
+## Demo Video & Presentation
+
+📺 **[Watch the Nudget Demo Video](https://youtu.be/1L2FsYppH1k)**
+
+Check out our comprehensive demo video showcasing all of Nudget's features and capabilities in action.
+
 ## How to Run
 
 ### Prerequisites
