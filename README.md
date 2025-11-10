@@ -6,6 +6,12 @@ Nudget is a comprehensive personal finance management platform designed specific
 
 Our mission is to make financial wellness accessible and actionable for everyone, regardless of their financial expertise or income stability. Nudget transforms overwhelming financial data into clear, actionable insights that help users build sustainable financial habits.
 
+## Demo Video & Presentation
+
+📺 **[Watch the Nudget Demo Video](https://youtu.be/1L2FsYppH1k)**
+
+Check out our comprehensive demo video showcasing all of Nudget's features and capabilities in action.
+
 ### Who is Nudget for?
 - **Young Adults & Students** looking to build good financial habits early
 - **Freelancers & Gig Workers** managing variable income and irregular expenses
@@ -67,12 +73,6 @@ Our mission is to make financial wellness accessible and actionable for everyone
 - Encrypted password storage
 - Protected API endpoints
 - Secure session management
-
-## Demo Video & Presentation
-
-📺 **[Watch the Nudget Demo Video](https://youtu.be/1L2FsYppH1k)**
-
-Check out our comprehensive demo video showcasing all of Nudget's features and capabilities in action.
 
 ## How to Run
 
