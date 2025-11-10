@@ -244,14 +244,6 @@ Nudget/
 └── README.md                # This file
 ```
 
-## License
-
-This project is proprietary software. All rights reserved.
-
-## Contact
-
-For questions, suggestions, or support, please contact the development team.
-
 ---
 
 Built with ❤️ for the next generation of financially conscious individuals.
